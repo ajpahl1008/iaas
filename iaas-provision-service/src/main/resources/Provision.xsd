@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://iaas.ws.pahlsoft.com" xmlns:tns="http://iaas.ws.pahlsoft.com"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+	
+	<xs:simpleType name="category">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SMALL" />
+			<xs:enumeration value="MEDIUM" />
+			<xs:enumeration value="LARGE" />
+			<xs:enumeration value="X_LARGE" />
+			<xs:enumeration value="X_SMALL" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="applicationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DATABASE" />
+			<xs:enumeration value="WEBSERVER" />
+			<xs:enumeration value="APPLICATIONSERVER" />
+			<xs:enumeration value="CUSTOM" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="software">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="type" type="tns:applicationType" />
+			<xs:element minOccurs="1" name="name" type="xs:string" />
+			<xs:element minOccurs="1" name="version" type="xs:string" />
+			<xs:element minOccurs="1" name="vendor" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="instructionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BACKUP" />
+			<xs:enumeration value="BOOT" />
+			<xs:enumeration value="BUILD" />
+			<xs:enumeration value="CLEAN" />
+			<xs:enumeration value="CONFIGURE" />
+			<xs:enumeration value="DEPLOY" />
+			<xs:enumeration value="INSTALL" />
+			<xs:enumeration value="REBUILD" />
+			<xs:enumeration value="REDEPLOY" />
+			<xs:enumeration value="REINSTALL" />
+			<xs:enumeration value="RELOAD" />
+			<xs:enumeration value="REBOOT" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+
+	<xs:complexType name="provisionProperty">
+		<xs:sequence minOccurs="1">
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="provisionProperties">
+		<xs:sequence>
+			<xs:element name="property" type="tns:provisionProperty" maxOccurs="unbounded" minOccurs="1"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="provisionResponse">
+		<xs:sequence>
+		<xs:element name="hostname" type="xs:string"/>
+		<xs:element name="instruction" type="tns:instructionType"/>
+		<xs:element name="properties" type="tns:provisionProperties"/>
+		<xs:element name="status" type="xs:boolean" />
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
