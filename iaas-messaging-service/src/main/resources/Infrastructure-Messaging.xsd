@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://iaas.ws.pahlsoft.com" xmlns:tns="http://iaas.ws.pahlsoft.com"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+	<xs:complexType name="IaasEvent">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="eventId" type="xs:int" />
+			<xs:element minOccurs="1" name="eventDate" type="xs:decimal" />
+			<xs:element minOccurs="1" name="correlationId" type="xs:string" />
+			<xs:element minOccurs="1" name="eventInfo" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="IaasError">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="errorId" type="xs:int" />
+			<xs:element minOccurs="1" name="errorDate" type="xs:decimal" />
+			<xs:element minOccurs="1" name="correlationId" type="xs:string" />
+			<xs:element minOccurs="1" name="errorInfo" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
