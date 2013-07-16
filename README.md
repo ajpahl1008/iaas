@@ -1,4 +1,4 @@
-iaas
+IaaS
 ====
 
 Infrastructure as a Service
