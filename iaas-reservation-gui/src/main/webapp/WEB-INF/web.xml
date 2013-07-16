@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+  <servlet>
+    <servlet-name>reservationServlet</servlet-name>
+    <servlet-class>com.pahlsoft.iaas.ui.server.ReservationServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>messagingServlet</servlet-name>
+    <servlet-class>com.pahlsoft.iaas.ui.server.MessageServiceImpl</servlet-class>
+  </servlet>
+
+  
+  <servlet-mapping>
+    <servlet-name>reservationServlet</servlet-name>
+    <url-pattern>/iaas_reservation_ui/reservations</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>messagingServlet</servlet-name>
+    <url-pattern>/iaas_reservation_ui/messaging</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Iaas_reservation_ui.html</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
