@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="com.pahlsoft.iaas.scheduler.quartz" />
+	<import resource="Orchestration-DataSource.xml" />
+	<import resource="Orchestration-Server.xml" />
+
+
+	<bean id="expiredServersTask" class="com.pahlsoft.iaas.scheduler.quartz.ExpiredServersTask" />
+
+	<bean id="hostDownTask" class="com.pahlsoft.iaas.scheduler.quartz.HostDownTask" />
+
+	<bean name="hostDownJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.pahlsoft.iaas.scheduler.quartz.HostDownJob" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="hostDownTask" value-ref="hostDownTask" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean name="expiredServersJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.pahlsoft.iaas.scheduler.quartz.ExpiredServersJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="expiredServersTask" value-ref="expiredServersTask" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- Simple Trigger -->
+<!-- 	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean"> -->
+
+<!-- 		<property name="jobDetail" ref="runMeJob" /> -->
+<!-- 		<property name="repeatInterval" value="5000" /> -->
+<!-- 		<property name="startDelay" value="1000" /> -->
+
+<!-- 	</bean> -->
+
+	<!-- Cron Trigger -->
+	<bean id="expiredServersTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="expiredServersJob" />
+		<property name="cronExpression" value="0 0/5 * * * ?" />
+	</bean>
+
+	<!-- Cron Trigger -->
+	<bean id="hostDownTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="hostDownJob" />
+		<property name="cronExpression" value="0 0/5 * * * ?" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="expiredServersJob" />
+				<ref bean="hostDownJob" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="expiredServersTrigger" />
+				<ref bean="hostDownTrigger" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

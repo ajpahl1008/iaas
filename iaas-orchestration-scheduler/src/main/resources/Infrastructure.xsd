@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://iaas.ws.pahlsoft.com" xmlns:tns="http://iaas.ws.pahlsoft.com"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+	<xs:complexType name="server">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="serverId" type="xs:int" />
+			<xs:element minOccurs="1" name="serverName" type="xs:string" />
+			<xs:element minOccurs="1" name="serverCategory" type="tns:category" />
+			<xs:element minOccurs="1" name="serverUser" type="tns:user" />
+			<xs:element minOccurs="1" name="startDate" type="xs:string" />
+			<xs:element minOccurs="1" name="expirationDate" type="xs:string" />
+			<xs:element minOccurs="1" name="serverStatus" type="tns:status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="status">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ONLINE" />
+			<xs:enumeration value="OFFLINE" />
+			<xs:enumeration value="BUILD" />
+			<xs:enumeration value="PROVISION" />
+			<xs:enumeration value="DEPLOY" />
+			<xs:enumeration value="ARCHIVING" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="category">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SMALL" />
+			<xs:enumeration value="MEDIUM" />
+			<xs:enumeration value="LARGE" />
+			<xs:enumeration value="X_LARGE" />
+			<xs:enumeration value="X_SMALL" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="user">
+		<xs:sequence>
+		    <xs:element minOccurs="1" name="userId" type="xs:int" />
+			<xs:element minOccurs="1" name="firstName" type="xs:string" />
+			<xs:element minOccurs="1" name="lastName" type="xs:string" />
+			<xs:element minOccurs="1" name="phoneNumber" type="xs:string" />
+			<xs:element minOccurs="1" name="loginId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="statistics">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="serverName" type="xs:string" />
+			<xs:element minOccurs="1" name="serverUptime" type="xs:string" />
+			<xs:element minOccurs="1" name="serverLoad" type="xs:string" />
+			<xs:element minOccurs="1" name="conextSwitching" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="storage">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="serverName" type="xs:string" />
+			<xs:element minOccurs="1" name="storageEntity" type="xs:string" />
+			<xs:element minOccurs="1" name="storageSize" type="xs:string" />
+			<xs:element minOccurs="1" name="percentFree" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>
