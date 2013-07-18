@@ -32,7 +32,6 @@ public class HostDownMDB implements MessageListener {
        	Date date = new Date();
        	String todaysDate = sdf.format(date); 
 
-         System.out.println("Processing Host Down Event ID: " + iaasEvent.getCorrelationId());
           try {
          	iaasEvent.setEventInfo("Host Down: " + txtMsg.getText());
          	iaasEvent.setCorrelationId(txtMsg.getJMSCorrelationID());
@@ -41,6 +40,7 @@ public class HostDownMDB implements MessageListener {
  		} catch (JMSException e) {
  			e.printStackTrace();
  		}
+          System.out.println("Processing Host Down Event ID: " + iaasEvent.getCorrelationId());
          EventMessageExecutor eme = new EventMessageExecutor();
          eme.sendMessage(iaasEvent);
 
