@@ -5,9 +5,9 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package com.pahlsoft.iaas.ws;
+package com.pahlsoft.iaas.ws.reservation;
 
-public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.axis.client.Stub implements com.pahlsoft.iaas.ws.ReservationSystemEndpoint {
+public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.axis.client.Stub implements com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpoint {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -26,8 +26,25 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("getAllServerStats");
+        oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statisticsArray"));
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Statistics[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "AllStatistics"));
+        param = oper.getReturnParamDesc();
+        param.setItemQName(new javax.xml.namespace.QName("", "item"));
+        oper.setStyle(org.apache.axis.constants.Style.RPC);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        oper.addFault(new org.apache.axis.description.FaultDesc(
+                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"),
+                      "com.pahlsoft.ws.iaas.Exception",
+                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
+                      true
+                     ));
+        _operations[0] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("addParent");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "parentInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "parent"), com.pahlsoft.iaas.ws.Parent.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "parentInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "parent"), com.pahlsoft.iaas.ws.reservation.Parent.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         oper.setReturnClass(int.class);
@@ -40,14 +57,14 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[0] = oper;
+        _operations[1] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getReservations");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "userName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Server[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Server[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -59,7 +76,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[1] = oper;
+        _operations[2] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("deleteUsers");
@@ -77,45 +94,11 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[2] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("getAllServerStats");
-        oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statisticsArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Statistics[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "AllStatistics"));
-        param = oper.getReturnParamDesc();
-        param.setItemQName(new javax.xml.namespace.QName("", "item"));
-        oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        oper.addFault(new org.apache.axis.description.FaultDesc(
-                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"),
-                      "com.pahlsoft.ws.iaas.Exception",
-                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
-                      true
-                     ));
         _operations[3] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("getUsers");
-        oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "userArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.User[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "Users"));
-        param = oper.getReturnParamDesc();
-        param.setItemQName(new javax.xml.namespace.QName("", "item"));
-        oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        oper.addFault(new org.apache.axis.description.FaultDesc(
-                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"),
-                      "com.pahlsoft.ws.iaas.Exception",
-                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
-                      true
-                     ));
-        _operations[4] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("setReservation");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"), com.pahlsoft.iaas.ws.Server[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"), com.pahlsoft.iaas.ws.reservation.Server[].class, false, false);
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
         oper.addParameter(param);
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "user"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -131,6 +114,23 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
+        _operations[4] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("getUsers");
+        oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "userArray"));
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.User[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "Users"));
+        param = oper.getReturnParamDesc();
+        param.setItemQName(new javax.xml.namespace.QName("", "item"));
+        oper.setStyle(org.apache.axis.constants.Style.RPC);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        oper.addFault(new org.apache.axis.description.FaultDesc(
+                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"),
+                      "com.pahlsoft.ws.iaas.Exception",
+                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
+                      true
+                     ));
         _operations[5] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -138,7 +138,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "getServer"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "parent"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Parent.class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Parent.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Parent"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -171,7 +171,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getUnreservedServers");
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Server[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Server[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "UnreservedServers"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -187,7 +187,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("setServerStats");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "setServerStats"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statistics"), com.pahlsoft.iaas.ws.Statistics.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "setServerStats"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statistics"), com.pahlsoft.iaas.ws.reservation.Statistics.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
         oper.setReturnClass(boolean.class);
@@ -209,7 +209,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("addServer");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "server"), com.pahlsoft.iaas.ws.Server.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "server"), com.pahlsoft.iaas.ws.reservation.Server.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         oper.setReturnClass(int.class);
@@ -229,7 +229,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statistics"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Statistics.class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Statistics.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Statistics"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -243,7 +243,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("setMultiStorage");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "storageEntityList"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storageArray"), com.pahlsoft.iaas.ws.Storage[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "storageEntityList"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storageArray"), com.pahlsoft.iaas.ws.reservation.Storage[].class, false, false);
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
@@ -262,7 +262,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getServers");
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Server[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Server[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Servers"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -278,7 +278,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("setServer");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "server"), com.pahlsoft.iaas.ws.Server.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "server"), com.pahlsoft.iaas.ws.reservation.Server.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         oper.setReturnClass(int.class);
@@ -295,7 +295,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("setUser");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "userInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "user"), com.pahlsoft.iaas.ws.User.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "userInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "user"), com.pahlsoft.iaas.ws.reservation.User.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         oper.setReturnClass(int.class);
@@ -315,7 +315,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "getServer"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Server[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Server[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Server"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -338,7 +338,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("addUser");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "userInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "user"), com.pahlsoft.iaas.ws.User.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "userInfo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "user"), com.pahlsoft.iaas.ws.reservation.User.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         oper.setReturnClass(int.class);
@@ -356,7 +356,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getReservedServers");
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Server[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Server[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "ReservedServers"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -378,7 +378,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getAllStorageInfo");
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storageArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Storage[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Storage[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "AllStorage"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -394,7 +394,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("setExpiration");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "servers"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray"), com.pahlsoft.iaas.ws.Server[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "servers"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://jaxb.dev.java.net/array", "stringArray"), java.lang.String[].class, false, false);
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
@@ -432,7 +432,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "userName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "userArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.User[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.User[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -451,7 +451,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storageArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Storage[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Storage[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Storage"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -468,7 +468,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getParents");
         oper.setReturnType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "parentArray"));
-        oper.setReturnClass(com.pahlsoft.iaas.ws.Parent[].class);
+        oper.setReturnClass(com.pahlsoft.iaas.ws.reservation.Parent[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "Parents"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
@@ -484,7 +484,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("deleteStorageEntity");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "deleteStorageEntity"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage"), com.pahlsoft.iaas.ws.Storage.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "deleteStorageEntity"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage"), com.pahlsoft.iaas.ws.reservation.Storage.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         oper.setReturnClass(int.class);
@@ -517,11 +517,12 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         _operations[27] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("setSingleStorage");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "storageEntity"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage"), com.pahlsoft.iaas.ws.Storage.class, false, false);
+        oper.setName("deleteParents");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "deleteParents"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://jaxb.dev.java.net/array", "stringArray"), java.lang.String[].class, false, false);
+        param.setItemQName(new javax.xml.namespace.QName("", "item"));
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
-        oper.setReturnClass(boolean.class);
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        oper.setReturnClass(int.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -534,12 +535,11 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         _operations[28] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("deleteParents");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "deleteParents"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://jaxb.dev.java.net/array", "stringArray"), java.lang.String[].class, false, false);
-        param.setItemQName(new javax.xml.namespace.QName("", "item"));
+        oper.setName("setSingleStorage");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "storageEntity"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage"), com.pahlsoft.iaas.ws.reservation.Storage.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
-        oper.setReturnClass(int.class);
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
+        oper.setReturnClass(boolean.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -584,35 +584,35 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "category");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Category.class;
+            cls = com.pahlsoft.iaas.ws.reservation.Category.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(enumsf);
             cachedDeserFactories.add(enumdf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Exception.class;
+            cls = com.pahlsoft.iaas.ws.reservation.Exception.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "operatingSystemEnum");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.OperatingSystemEnum.class;
+            cls = com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(enumsf);
             cachedDeserFactories.add(enumdf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "parent");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Parent.class;
+            cls = com.pahlsoft.iaas.ws.reservation.Parent.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "parentArray");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Parent[].class;
+            cls = com.pahlsoft.iaas.ws.reservation.Parent[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "parent");
             qName2 = new javax.xml.namespace.QName("", "item");
@@ -621,14 +621,14 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "server");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Server.class;
+            cls = com.pahlsoft.iaas.ws.reservation.Server.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "serverArray");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Server[].class;
+            cls = com.pahlsoft.iaas.ws.reservation.Server[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "server");
             qName2 = new javax.xml.namespace.QName("", "item");
@@ -637,14 +637,14 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statistics");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Statistics.class;
+            cls = com.pahlsoft.iaas.ws.reservation.Statistics.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statisticsArray");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Statistics[].class;
+            cls = com.pahlsoft.iaas.ws.reservation.Statistics[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statistics");
             qName2 = new javax.xml.namespace.QName("", "item");
@@ -653,21 +653,21 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "status");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Status.class;
+            cls = com.pahlsoft.iaas.ws.reservation.Status.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(enumsf);
             cachedDeserFactories.add(enumdf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Storage.class;
+            cls = com.pahlsoft.iaas.ws.reservation.Storage.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storageArray");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.Storage[].class;
+            cls = com.pahlsoft.iaas.ws.reservation.Storage[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage");
             qName2 = new javax.xml.namespace.QName("", "item");
@@ -676,14 +676,14 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "user");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.User.class;
+            cls = com.pahlsoft.iaas.ws.reservation.User.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "userArray");
             cachedSerQNames.add(qName);
-            cls = com.pahlsoft.iaas.ws.User[].class;
+            cls = com.pahlsoft.iaas.ws.reservation.User[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "user");
             qName2 = new javax.xml.namespace.QName("", "item");
@@ -765,12 +765,54 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         }
     }
 
-    public int addParent(com.pahlsoft.iaas.ws.Parent parentInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Statistics[] getAllServerStats() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[0]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "getAllServerStats"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (com.pahlsoft.iaas.ws.reservation.Statistics[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (com.pahlsoft.iaas.ws.reservation.Statistics[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Statistics[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
+         }
+   }
+  throw axisFaultException;
+}
+    }
+
+    public int addParent(com.pahlsoft.iaas.ws.reservation.Parent parentInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[1]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -799,20 +841,20 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Server[] getReservations(java.lang.String userName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Server[] getReservations(java.lang.String userName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[1]);
+        _call.setOperation(_operations[2]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -831,9 +873,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Server[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Server[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Server[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -841,20 +883,20 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int deleteUsers(java.lang.String[] userInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int deleteUsers(java.lang.String[] userInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[2]);
+        _call.setOperation(_operations[3]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -883,104 +925,20 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Statistics[] getAllServerStats() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[3]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "getAllServerStats"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (com.pahlsoft.iaas.ws.Statistics[]) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Statistics[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Statistics[].class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-    if (axisFaultException.detail != null) {
-        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
-              throw (java.rmi.RemoteException) axisFaultException.detail;
-         }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
-         }
-   }
-  throw axisFaultException;
-}
-    }
-
-    public com.pahlsoft.iaas.ws.User[] getUsers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int setReservation(com.pahlsoft.iaas.ws.reservation.Server[] serverName, java.lang.String user) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[4]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "getUsers"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (com.pahlsoft.iaas.ws.User[]) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.User[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.User[].class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-    if (axisFaultException.detail != null) {
-        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
-              throw (java.rmi.RemoteException) axisFaultException.detail;
-         }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
-         }
-   }
-  throw axisFaultException;
-}
-    }
-
-    public int setReservation(com.pahlsoft.iaas.ws.Server[] serverName, java.lang.String user) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[5]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -1009,15 +967,57 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Parent getParent(java.lang.String getServer) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.User[] getUsers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[5]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "getUsers"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (com.pahlsoft.iaas.ws.reservation.User[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (com.pahlsoft.iaas.ws.reservation.User[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.User[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
+         }
+   }
+  throw axisFaultException;
+}
+    }
+
+    public com.pahlsoft.iaas.ws.reservation.Parent getParent(java.lang.String getServer) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1041,9 +1041,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Parent) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Parent) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Parent) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Parent.class);
+                return (com.pahlsoft.iaas.ws.reservation.Parent) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Parent.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1051,15 +1051,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int deleteServers(java.lang.String[] deleteServers) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int deleteServers(java.lang.String[] deleteServers) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1093,15 +1093,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Server[] getUnreservedServers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Server[] getUnreservedServers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1125,9 +1125,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Server[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Server[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Server[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1135,15 +1135,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public boolean setServerStats(com.pahlsoft.iaas.ws.Statistics setServerStats) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public boolean setServerStats(com.pahlsoft.iaas.ws.reservation.Statistics setServerStats) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1177,15 +1177,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int addServer(com.pahlsoft.iaas.ws.Server serverInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int addServer(com.pahlsoft.iaas.ws.reservation.Server serverInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1219,15 +1219,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Statistics getServerStats(java.lang.String serverName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Statistics getServerStats(java.lang.String serverName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1251,9 +1251,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Statistics) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Statistics) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Statistics) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Statistics.class);
+                return (com.pahlsoft.iaas.ws.reservation.Statistics) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Statistics.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1261,15 +1261,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public boolean setMultiStorage(com.pahlsoft.iaas.ws.Storage[] storageEntityList) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public boolean setMultiStorage(com.pahlsoft.iaas.ws.reservation.Storage[] storageEntityList) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1303,15 +1303,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Server[] getServers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Server[] getServers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1335,9 +1335,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Server[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Server[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Server[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1345,15 +1345,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int setServer(com.pahlsoft.iaas.ws.Server serverInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int setServer(com.pahlsoft.iaas.ws.reservation.Server serverInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1387,15 +1387,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int setUser(com.pahlsoft.iaas.ws.User userInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int setUser(com.pahlsoft.iaas.ws.reservation.User userInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1429,15 +1429,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Server[] getServer(java.lang.String getServer) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Server[] getServer(java.lang.String getServer) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1461,9 +1461,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Server[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Server[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Server[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1471,8 +1471,8 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
@@ -1506,7 +1506,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 }
     }
 
-    public int addUser(com.pahlsoft.iaas.ws.User userInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int addUser(com.pahlsoft.iaas.ws.reservation.User userInfo) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1540,15 +1540,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Server[] getReservedServers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Server[] getReservedServers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1572,9 +1572,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Server[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Server[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Server[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Server[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1582,15 +1582,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Storage[] getAllStorageInfo() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Storage[] getAllStorageInfo() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1614,9 +1614,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Storage[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Storage[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Storage[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Storage[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Storage[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Storage[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1624,15 +1624,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int setExpiration(com.pahlsoft.iaas.ws.Server[] servers) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int setExpiration(java.lang.String[] servers) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1666,15 +1666,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int deleteServerStorage(java.lang.String deleteServerStorage) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int deleteServerStorage(java.lang.String deleteServerStorage) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1708,15 +1708,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.User[] getUser(java.lang.String userName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.User[] getUser(java.lang.String userName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1740,9 +1740,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.User[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.User[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.User[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.User[].class);
+                return (com.pahlsoft.iaas.ws.reservation.User[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.User[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1750,15 +1750,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Storage[] getServerStorageInfo(java.lang.String serverName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Storage[] getServerStorageInfo(java.lang.String serverName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1782,9 +1782,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Storage[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Storage[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Storage[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Storage[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Storage[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Storage[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1792,15 +1792,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public com.pahlsoft.iaas.ws.Parent[] getParents() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public com.pahlsoft.iaas.ws.reservation.Parent[] getParents() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1824,9 +1824,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return (com.pahlsoft.iaas.ws.Parent[]) _resp;
+                return (com.pahlsoft.iaas.ws.reservation.Parent[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (com.pahlsoft.iaas.ws.Parent[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.Parent[].class);
+                return (com.pahlsoft.iaas.ws.reservation.Parent[]) org.apache.axis.utils.JavaUtils.convert(_resp, com.pahlsoft.iaas.ws.reservation.Parent[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1834,15 +1834,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int deleteStorageEntity(com.pahlsoft.iaas.ws.Storage deleteStorageEntity) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int deleteStorageEntity(com.pahlsoft.iaas.ws.reservation.Storage deleteStorageEntity) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1876,15 +1876,15 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public int deleteServerStatistics(java.lang.String deleteServerStatistics) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int deleteServerStatistics(java.lang.String deleteServerStatistics) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1918,62 +1918,20 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;
 }
     }
 
-    public boolean setSingleStorage(com.pahlsoft.iaas.ws.Storage storageEntity) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
+    public int deleteParents(java.lang.String[] deleteParents) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[28]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "setSingleStorage"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {storageEntity});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return ((java.lang.Boolean) _resp).booleanValue();
-            } catch (java.lang.Exception _exception) {
-                return ((java.lang.Boolean) org.apache.axis.utils.JavaUtils.convert(_resp, boolean.class)).booleanValue();
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-    if (axisFaultException.detail != null) {
-        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
-              throw (java.rmi.RemoteException) axisFaultException.detail;
-         }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
-         }
-   }
-  throw axisFaultException;
-}
-    }
-
-    public int deleteParents(java.lang.String[] deleteParents) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.Exception {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[29]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -2002,8 +1960,50 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         if (axisFaultException.detail instanceof java.rmi.RemoteException) {
               throw (java.rmi.RemoteException) axisFaultException.detail;
          }
-        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.Exception) {
-              throw (com.pahlsoft.iaas.ws.Exception) axisFaultException.detail;
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
+         }
+   }
+  throw axisFaultException;
+}
+    }
+
+    public boolean setSingleStorage(com.pahlsoft.iaas.ws.reservation.Storage storageEntity) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[29]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "setSingleStorage"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {storageEntity});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return ((java.lang.Boolean) _resp).booleanValue();
+            } catch (java.lang.Exception _exception) {
+                return ((java.lang.Boolean) org.apache.axis.utils.JavaUtils.convert(_resp, boolean.class)).booleanValue();
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
          }
    }
   throw axisFaultException;

@@ -3,19 +3,20 @@ package com.pahlsoft.iaas.orchestration.ejb;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
-import javax.ejb.*;
 
 import org.jboss.ejb3.annotation.ResourceAdapter;
 
-import com.pahlsoft.iaas.ws.Category;
-import com.pahlsoft.iaas.ws.ReservationSystemEndpointProxy;
-import com.pahlsoft.iaas.ws.Server;
-import com.pahlsoft.iaas.ws.Status;
-import com.pahlsoft.iaas.ws.User;
+import com.pahlsoft.iaas.ws.reservation.Category;
+import com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpointProxy;
+import com.pahlsoft.iaas.ws.reservation.Server;
+import com.pahlsoft.iaas.ws.reservation.Status;
+import com.pahlsoft.iaas.ws.reservation.User;
 
 @MessageDriven(name = "ExpirationMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
@@ -36,30 +37,15 @@ public class ExpirationMDB implements MessageListener {
 			server="";
 			e.printStackTrace();
 		}
-          System.out.println("Processing Host Down Message ID: " + eventId);
+          System.out.println("Processing Expiration Event Message ID: " + eventId);
           // Make a SOAP Call
           ReservationSystemEndpointProxy endpoint = new ReservationSystemEndpointProxy(); 
 	    
-          ArrayList<Server> servers = new ArrayList<Server>();
-	      Server serverObj = new Server();
-	     	User userObj = new User();
-	      	// Null Or Blank User Values (since they are not needed on the SOAP service)
-		      userObj.setFirstName("blank");
-		      userObj.setLastName("blank");
-		      userObj.setLoginId("blank");
-		      userObj.setPhoneNumber("blank");
-		      userObj.setUserId(0);
-	      serverObj.setServerUser(userObj);
-	      serverObj.setServerCategory(Category.LARGE);
-	      serverObj.setServerId(0);
-	      serverObj.setServerStatus(Status.OFFLINE);
-	      serverObj.setExpirationDate("00000000");
-	      serverObj.setStartDate("00000000");
-	      serverObj.setServerName(server);
-	      servers.add(serverObj);
+          ArrayList<String> servers = new ArrayList<String>();
+	      servers.add(server);
 	      
 	      // Convert to an ArrayList to an Array
-	   	  Server[] _serverArray = servers.toArray(new Server[servers.size()]);
+	   	  String[] _serverArray = servers.toArray(new String[servers.size()]);
 	   	  // Expire the Server 
         try {
 			endpoint.setExpiration(_serverArray);

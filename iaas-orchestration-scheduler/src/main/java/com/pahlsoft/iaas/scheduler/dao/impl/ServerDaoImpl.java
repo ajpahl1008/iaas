@@ -23,7 +23,7 @@ private JdbcTemplate jdbcTemplate;
 Logger daoLog = LoggerFactory.getLogger(ServerDaoImpl.class);
 
 public List<String> getExpiredServers() {
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	Date date = new Date();
 	String todaysDate = sdf.format(date); 
 	daoLog.debug("Searching for Expired Servers");

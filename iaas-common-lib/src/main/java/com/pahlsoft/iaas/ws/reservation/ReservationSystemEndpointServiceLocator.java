@@ -5,9 +5,9 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package com.pahlsoft.iaas.ws;
+package com.pahlsoft.iaas.ws.reservation;
 
-public class ReservationSystemEndpointServiceLocator extends org.apache.axis.client.Service implements com.pahlsoft.iaas.ws.ReservationSystemEndpointService {
+public class ReservationSystemEndpointServiceLocator extends org.apache.axis.client.Service implements com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpointService {
 
     public ReservationSystemEndpointServiceLocator() {
     }
@@ -22,7 +22,6 @@ public class ReservationSystemEndpointServiceLocator extends org.apache.axis.cli
     }
 
     // Use to get a proxy class for ReservationSystemEndpointPort
-    //private java.lang.String ReservationSystemEndpointPort_address = "http://192.168.1.14:8080/iaas-reservation-service-0.0.1-SNAPSHOT/server";
     private java.lang.String ReservationSystemEndpointPort_address = System.getProperty("iaas.reservation.service.url");
 
     public java.lang.String getReservationSystemEndpointPortAddress() {
@@ -40,7 +39,7 @@ public class ReservationSystemEndpointServiceLocator extends org.apache.axis.cli
         ReservationSystemEndpointPortWSDDServiceName = name;
     }
 
-    public com.pahlsoft.iaas.ws.ReservationSystemEndpoint getReservationSystemEndpointPort() throws javax.xml.rpc.ServiceException {
+    public com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpoint getReservationSystemEndpointPort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(ReservationSystemEndpointPort_address);
@@ -51,9 +50,9 @@ public class ReservationSystemEndpointServiceLocator extends org.apache.axis.cli
         return getReservationSystemEndpointPort(endpoint);
     }
 
-    public com.pahlsoft.iaas.ws.ReservationSystemEndpoint getReservationSystemEndpointPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpoint getReservationSystemEndpointPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            com.pahlsoft.iaas.ws.ReservationSystemEndpointServiceSoapBindingStub _stub = new com.pahlsoft.iaas.ws.ReservationSystemEndpointServiceSoapBindingStub(portAddress, this);
+            com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpointServiceSoapBindingStub _stub = new com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpointServiceSoapBindingStub(portAddress, this);
             _stub.setPortName(getReservationSystemEndpointPortWSDDServiceName());
             return _stub;
         }
@@ -73,8 +72,8 @@ public class ReservationSystemEndpointServiceLocator extends org.apache.axis.cli
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (com.pahlsoft.iaas.ws.ReservationSystemEndpoint.class.isAssignableFrom(serviceEndpointInterface)) {
-                com.pahlsoft.iaas.ws.ReservationSystemEndpointServiceSoapBindingStub _stub = new com.pahlsoft.iaas.ws.ReservationSystemEndpointServiceSoapBindingStub(new java.net.URL(ReservationSystemEndpointPort_address), this);
+            if (com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpoint.class.isAssignableFrom(serviceEndpointInterface)) {
+                com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpointServiceSoapBindingStub _stub = new com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpointServiceSoapBindingStub(new java.net.URL(ReservationSystemEndpointPort_address), this);
                 _stub.setPortName(getReservationSystemEndpointPortWSDDServiceName());
                 return _stub;
             }

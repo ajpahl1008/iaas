@@ -1,15 +1,19 @@
 package com.pahlsoft.iaas.orchestration.ejb;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
-import javax.ejb.*;
 
 import org.jboss.ejb3.annotation.ResourceAdapter;
+
+import com.pahlsoft.iaas.executors.impl.EventMessageExecutor;
+import com.pahlsoft.iaas.ws.messaging.IaasEvent;
 
 @MessageDriven(name = "EventMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
@@ -22,45 +26,26 @@ public class EventMDB implements MessageListener {
 	String eventId;
 
      public void onMessage(Message message) {
-    	  TextMessage txtMsg = (TextMessage) message;
+    	TextMessage txtMsg = (TextMessage) message;
+        IaasEvent iaasEvent = new IaasEvent();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+      	Date date = new Date();
+      	String todaysDate = sdf.format(date); 
+
          try {
-        	eventText = txtMsg.getText();
-        	eventId = txtMsg.getJMSCorrelationID();
+        	iaasEvent.setEventInfo(txtMsg.getText());
+        	iaasEvent.setCorrelationId(txtMsg.getJMSCorrelationID());
+        	iaasEvent.setEventId(0);
+        	iaasEvent.setEventDate(todaysDate);
 		} catch (JMSException e) {
 			eventText="";
 			eventId="";
 			e.printStackTrace();
 		}
-          System.out.println("Processing IaaS Event ID: " + eventId);
-//          // Make a SOAP Call
-//          ReservationSystemEndpointProxy endpoint = new ReservationSystemEndpointProxy(); 
-//	    
-//          ArrayList<Server> servers = new ArrayList<Server>();
-//	      Server serverObj = new Server();
-//	     	User userObj = new User();
-//	      	// Null Or Blank User Values (since they are not needed on the SOAP service)
-//		      userObj.setFirstName("blank");
-//		      userObj.setLastName("blank");
-//		      userObj.setLoginId("blank");
-//		      userObj.setPhoneNumber("blank");
-//		      userObj.setUserId(0);
-//	      serverObj.setServerUser(userObj);
-//	      serverObj.setServerCategory(Category.LARGE);
-//	      serverObj.setServerId(0);
-//	      serverObj.setServerStatus(Status.OFFLINE);
-//	      serverObj.setExpirationDate("00000000");
-//	      serverObj.setStartDate("00000000");
-//	      serverObj.setServerName(eventText);
-//	      servers.add(serverObj);
-//	      
-//	      // Convert to an ArrayList to an Array
-//	   	  Server[] _serverArray = servers.toArray(new Server[servers.size()]);
-	   	  // Expire the Server 
-//        try {
-//			endpoint.setExpiration(_serverArray);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
+        System.out.println("Processing IaaS Event ID: " + eventId);
+        EventMessageExecutor eme = new EventMessageExecutor();
+        eme.sendMessage(iaasEvent);
 
      }
 

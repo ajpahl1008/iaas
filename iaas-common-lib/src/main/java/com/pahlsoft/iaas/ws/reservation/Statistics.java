@@ -1,38 +1,38 @@
 /**
- * Storage.java
+ * Statistics.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package com.pahlsoft.iaas.ws;
+package com.pahlsoft.iaas.ws.reservation;
 
-public class Storage  implements java.io.Serializable {
+public class Statistics  implements java.io.Serializable {
     private java.lang.String serverName;
 
-    private java.lang.String storageEntity;
+    private java.lang.String serverUptime;
 
-    private java.lang.String storageSize;
+    private java.lang.String serverLoad;
 
-    private java.lang.String percentFree;
+    private java.lang.String conextSwitching;
 
-    public Storage() {
+    public Statistics() {
     }
 
-    public Storage(
+    public Statistics(
            java.lang.String serverName,
-           java.lang.String storageEntity,
-           java.lang.String storageSize,
-           java.lang.String percentFree) {
+           java.lang.String serverUptime,
+           java.lang.String serverLoad,
+           java.lang.String conextSwitching) {
            this.serverName = serverName;
-           this.storageEntity = storageEntity;
-           this.storageSize = storageSize;
-           this.percentFree = percentFree;
+           this.serverUptime = serverUptime;
+           this.serverLoad = serverLoad;
+           this.conextSwitching = conextSwitching;
     }
 
 
     /**
-     * Gets the serverName value for this Storage.
+     * Gets the serverName value for this Statistics.
      * 
      * @return serverName
      */
@@ -42,7 +42,7 @@ public class Storage  implements java.io.Serializable {
 
 
     /**
-     * Sets the serverName value for this Storage.
+     * Sets the serverName value for this Statistics.
      * 
      * @param serverName
      */
@@ -52,68 +52,68 @@ public class Storage  implements java.io.Serializable {
 
 
     /**
-     * Gets the storageEntity value for this Storage.
+     * Gets the serverUptime value for this Statistics.
      * 
-     * @return storageEntity
+     * @return serverUptime
      */
-    public java.lang.String getStorageEntity() {
-        return storageEntity;
+    public java.lang.String getServerUptime() {
+        return serverUptime;
     }
 
 
     /**
-     * Sets the storageEntity value for this Storage.
+     * Sets the serverUptime value for this Statistics.
      * 
-     * @param storageEntity
+     * @param serverUptime
      */
-    public void setStorageEntity(java.lang.String storageEntity) {
-        this.storageEntity = storageEntity;
+    public void setServerUptime(java.lang.String serverUptime) {
+        this.serverUptime = serverUptime;
     }
 
 
     /**
-     * Gets the storageSize value for this Storage.
+     * Gets the serverLoad value for this Statistics.
      * 
-     * @return storageSize
+     * @return serverLoad
      */
-    public java.lang.String getStorageSize() {
-        return storageSize;
+    public java.lang.String getServerLoad() {
+        return serverLoad;
     }
 
 
     /**
-     * Sets the storageSize value for this Storage.
+     * Sets the serverLoad value for this Statistics.
      * 
-     * @param storageSize
+     * @param serverLoad
      */
-    public void setStorageSize(java.lang.String storageSize) {
-        this.storageSize = storageSize;
+    public void setServerLoad(java.lang.String serverLoad) {
+        this.serverLoad = serverLoad;
     }
 
 
     /**
-     * Gets the percentFree value for this Storage.
+     * Gets the conextSwitching value for this Statistics.
      * 
-     * @return percentFree
+     * @return conextSwitching
      */
-    public java.lang.String getPercentFree() {
-        return percentFree;
+    public java.lang.String getConextSwitching() {
+        return conextSwitching;
     }
 
 
     /**
-     * Sets the percentFree value for this Storage.
+     * Sets the conextSwitching value for this Statistics.
      * 
-     * @param percentFree
+     * @param conextSwitching
      */
-    public void setPercentFree(java.lang.String percentFree) {
-        this.percentFree = percentFree;
+    public void setConextSwitching(java.lang.String conextSwitching) {
+        this.conextSwitching = conextSwitching;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Storage)) return false;
-        Storage other = (Storage) obj;
+        if (!(obj instanceof Statistics)) return false;
+        Statistics other = (Statistics) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -125,15 +125,15 @@ public class Storage  implements java.io.Serializable {
             ((this.serverName==null && other.getServerName()==null) || 
              (this.serverName!=null &&
               this.serverName.equals(other.getServerName()))) &&
-            ((this.storageEntity==null && other.getStorageEntity()==null) || 
-             (this.storageEntity!=null &&
-              this.storageEntity.equals(other.getStorageEntity()))) &&
-            ((this.storageSize==null && other.getStorageSize()==null) || 
-             (this.storageSize!=null &&
-              this.storageSize.equals(other.getStorageSize()))) &&
-            ((this.percentFree==null && other.getPercentFree()==null) || 
-             (this.percentFree!=null &&
-              this.percentFree.equals(other.getPercentFree())));
+            ((this.serverUptime==null && other.getServerUptime()==null) || 
+             (this.serverUptime!=null &&
+              this.serverUptime.equals(other.getServerUptime()))) &&
+            ((this.serverLoad==null && other.getServerLoad()==null) || 
+             (this.serverLoad!=null &&
+              this.serverLoad.equals(other.getServerLoad()))) &&
+            ((this.conextSwitching==null && other.getConextSwitching()==null) || 
+             (this.conextSwitching!=null &&
+              this.conextSwitching.equals(other.getConextSwitching())));
         __equalsCalc = null;
         return _equals;
     }
@@ -148,14 +148,14 @@ public class Storage  implements java.io.Serializable {
         if (getServerName() != null) {
             _hashCode += getServerName().hashCode();
         }
-        if (getStorageEntity() != null) {
-            _hashCode += getStorageEntity().hashCode();
+        if (getServerUptime() != null) {
+            _hashCode += getServerUptime().hashCode();
         }
-        if (getStorageSize() != null) {
-            _hashCode += getStorageSize().hashCode();
+        if (getServerLoad() != null) {
+            _hashCode += getServerLoad().hashCode();
         }
-        if (getPercentFree() != null) {
-            _hashCode += getPercentFree().hashCode();
+        if (getConextSwitching() != null) {
+            _hashCode += getConextSwitching().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -163,10 +163,10 @@ public class Storage  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Storage.class, true);
+        new org.apache.axis.description.TypeDesc(Statistics.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "statistics"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("serverName");
         elemField.setXmlName(new javax.xml.namespace.QName("", "serverName"));
@@ -174,20 +174,20 @@ public class Storage  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("storageEntity");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "storageEntity"));
+        elemField.setFieldName("serverUptime");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "serverUptime"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("storageSize");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "storageSize"));
+        elemField.setFieldName("serverLoad");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "serverLoad"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("percentFree");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "percentFree"));
+        elemField.setFieldName("conextSwitching");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "conextSwitching"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

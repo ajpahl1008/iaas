@@ -36,7 +36,7 @@ public class HostDownTask {
 		Map<String,String> chunkMap = new HashMap<String,String>();
 		int chunkSize = 0;
 
-		for (int counter=0; counter<=keyList.size(); counter++) {
+		for (int counter=0; counter<keyList.size(); counter++) {
 			if (chunkSize<9) {
 				chunkMap.put(keyList.get(counter), valueList.get(counter));
 				chunkSize++;

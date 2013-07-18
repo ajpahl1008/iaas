@@ -1,41 +1,43 @@
 /**
- * Category.java
+ * Status.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package com.pahlsoft.iaas.ws;
+package com.pahlsoft.iaas.ws.reservation;
 
-public class Category implements java.io.Serializable {
+public class Status implements java.io.Serializable {
     private java.lang.String _value_;
     private static java.util.HashMap _table_ = new java.util.HashMap();
 
     // Constructor
-    protected Category(java.lang.String value) {
+    protected Status(java.lang.String value) {
         _value_ = value;
         _table_.put(_value_,this);
     }
 
-    public static final java.lang.String _SMALL = "SMALL";
-    public static final java.lang.String _MEDIUM = "MEDIUM";
-    public static final java.lang.String _LARGE = "LARGE";
-    public static final java.lang.String _X_LARGE = "X_LARGE";
-    public static final java.lang.String _X_SMALL = "X_SMALL";
-    public static final Category SMALL = new Category(_SMALL);
-    public static final Category MEDIUM = new Category(_MEDIUM);
-    public static final Category LARGE = new Category(_LARGE);
-    public static final Category X_LARGE = new Category(_X_LARGE);
-    public static final Category X_SMALL = new Category(_X_SMALL);
+    public static final java.lang.String _ONLINE = "ONLINE";
+    public static final java.lang.String _OFFLINE = "OFFLINE";
+    public static final java.lang.String _BUILD = "BUILD";
+    public static final java.lang.String _PROVISION = "PROVISION";
+    public static final java.lang.String _DEPLOY = "DEPLOY";
+    public static final java.lang.String _ARCHIVING = "ARCHIVING";
+    public static final Status ONLINE = new Status(_ONLINE);
+    public static final Status OFFLINE = new Status(_OFFLINE);
+    public static final Status BUILD = new Status(_BUILD);
+    public static final Status PROVISION = new Status(_PROVISION);
+    public static final Status DEPLOY = new Status(_DEPLOY);
+    public static final Status ARCHIVING = new Status(_ARCHIVING);
     public java.lang.String getValue() { return _value_;}
-    public static Category fromValue(java.lang.String value)
+    public static Status fromValue(java.lang.String value)
           throws java.lang.IllegalArgumentException {
-        Category enumeration = (Category)
+        Status enumeration = (Status)
             _table_.get(value);
         if (enumeration==null) throw new java.lang.IllegalArgumentException();
         return enumeration;
     }
-    public static Category fromString(java.lang.String value)
+    public static Status fromString(java.lang.String value)
           throws java.lang.IllegalArgumentException {
         return fromValue(value);
     }
@@ -61,10 +63,10 @@ public class Category implements java.io.Serializable {
     }
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Category.class);
+        new org.apache.axis.description.TypeDesc(Status.class);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "category"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "status"));
     }
     /**
      * Return type metadata object

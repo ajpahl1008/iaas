@@ -1,0 +1,976 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ReservationSystemEndpointService" targetNamespace="http://iaas.ws.pahlsoft.com" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://iaas.ws.pahlsoft.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema targetNamespace="http://jaxb.dev.java.net/array" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType final="#all" name="stringArray">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://iaas.ws.pahlsoft.com" xmlns:tns="http://iaas.ws.pahlsoft.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="statistics">
+    <xs:sequence>
+      <xs:element name="serverName" type="xs:string"/>
+      <xs:element name="serverUptime" type="xs:string"/>
+      <xs:element name="serverLoad" type="xs:string"/>
+      <xs:element name="conextSwitching" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="server">
+    <xs:sequence>
+      <xs:element name="serverId" type="xs:int"/>
+      <xs:element name="serverName" type="xs:string"/>
+      <xs:element name="serverCategory" type="tns:category"/>
+      <xs:element name="serverUser" type="tns:user"/>
+      <xs:element name="startDate" type="xs:string"/>
+      <xs:element name="expirationDate" type="xs:string"/>
+      <xs:element name="serverStatus" type="tns:status"/>
+      <xs:element name="parentName" type="xs:string"/>
+      <xs:element name="ipAddress" type="xs:string"/>
+      <xs:element name="dnsName" type="xs:string"/>
+      <xs:element name="operatingSystem" type="tns:operatingSystemEnum"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element name="userId" type="xs:int"/>
+      <xs:element name="firstName" type="xs:string"/>
+      <xs:element name="lastName" type="xs:string"/>
+      <xs:element name="phoneNumber" type="xs:string"/>
+      <xs:element name="loginId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="parent">
+    <xs:sequence>
+      <xs:element name="parentId" type="xs:int"/>
+      <xs:element name="parentName" type="xs:string"/>
+      <xs:element name="ipAddress" type="xs:string"/>
+      <xs:element name="dnsName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="arrayList">
+    <xs:complexContent>
+      <xs:extension base="tns:abstractList">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="abstractList">
+    <xs:complexContent>
+      <xs:extension base="tns:abstractCollection">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="abstractCollection">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="storage">
+    <xs:sequence>
+      <xs:element name="serverName" type="xs:string"/>
+      <xs:element name="storageEntity" type="xs:string"/>
+      <xs:element name="storageSize" type="xs:string"/>
+      <xs:element name="percentFree" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="category">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SMALL"/>
+      <xs:enumeration value="MEDIUM"/>
+      <xs:enumeration value="LARGE"/>
+      <xs:enumeration value="X_LARGE"/>
+      <xs:enumeration value="X_SMALL"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="status">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ONLINE"/>
+      <xs:enumeration value="OFFLINE"/>
+      <xs:enumeration value="BUILD"/>
+      <xs:enumeration value="PROVISION"/>
+      <xs:enumeration value="DEPLOY"/>
+      <xs:enumeration value="ARCHIVING"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="operatingSystemEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unknown"/>
+      <xs:enumeration value="AIX6.1"/>
+      <xs:enumeration value="AIX7.1"/>
+      <xs:enumeration value="AIX5.3"/>
+      <xs:enumeration value="WIN2003"/>
+      <xs:enumeration value="WIN2008"/>
+      <xs:enumeration value="WIN7"/>
+      <xs:enumeration value="WINXP"/>
+      <xs:enumeration value="Solaris"/>
+      <xs:enumeration value="RHEL6.1"/>
+      <xs:enumeration value="RHEL5.5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType final="#all" name="statisticsArray">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:statistics"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType final="#all" name="serverArray">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:server"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType final="#all" name="userArray">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:user"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType final="#all" name="storageArray">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:storage"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType final="#all" name="parentArray">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:parent"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getParentsResponse">
+    <wsdl:part name="Parents" type="tns:parentArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServersResponse">
+    <wsdl:part name="Servers" type="tns:serverArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setUser">
+    <wsdl:part name="userInfo" type="tns:user">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setExpiration">
+    <wsdl:part name="servers" type="ns1:stringArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteServerStorage">
+    <wsdl:part name="deleteServerStorage" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllServerStatsResponse">
+    <wsdl:part name="AllStatistics" type="tns:statisticsArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUsers">
+    <wsdl:part name="userInfo" type="ns1:stringArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteServersResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteServerStatisticsResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setExpirationResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReservationsResponse">
+    <wsdl:part name="return" type="tns:serverArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllStorageInfoResponse">
+    <wsdl:part name="AllStorage" type="tns:storageArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setServerResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setReservation">
+    <wsdl:part name="serverName" type="tns:serverArray">
+    </wsdl:part>
+    <wsdl:part name="user" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServerStorageInfo">
+    <wsdl:part name="serverName" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addParent">
+    <wsdl:part name="parentInfo" type="tns:parent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteServerStorageResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getParents">
+  </wsdl:message>
+  <wsdl:message name="addServer">
+    <wsdl:part name="serverInfo" type="tns:server">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setServer">
+    <wsdl:part name="serverInfo" type="tns:server">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersResponse">
+    <wsdl:part name="Users" type="tns:userArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteStorageEntityResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setSingleStorageResponse">
+    <wsdl:part name="return" type="xsd:boolean">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsers">
+  </wsdl:message>
+  <wsdl:message name="getAllStorageInfo">
+  </wsdl:message>
+  <wsdl:message name="setServerStatsResponse">
+    <wsdl:part name="return" type="xsd:boolean">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllServerStats">
+  </wsdl:message>
+  <wsdl:message name="setUserResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUser">
+    <wsdl:part name="userName" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setServerStats">
+    <wsdl:part name="setServerStats" type="tns:statistics">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnreservedServers">
+  </wsdl:message>
+  <wsdl:message name="getParentResponse">
+    <wsdl:part name="Parent" type="tns:parent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServers">
+  </wsdl:message>
+  <wsdl:message name="getReservedServersResponse">
+    <wsdl:part name="ReservedServers" type="tns:serverArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServerResponse">
+    <wsdl:part name="Server" type="tns:serverArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserResponse">
+    <wsdl:part name="return" type="tns:userArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUsersResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setMultiStorageResponse">
+    <wsdl:part name="return" type="xsd:boolean">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReservations">
+    <wsdl:part name="userName" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReservedServers">
+  </wsdl:message>
+  <wsdl:message name="getServerStats">
+    <wsdl:part name="serverName" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteStorageEntity">
+    <wsdl:part name="deleteStorageEntity" type="tns:storage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUser">
+    <wsdl:part name="userInfo" type="tns:user">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServer">
+    <wsdl:part name="getServer" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addServerResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteParentsResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteServers">
+    <wsdl:part name="deleteServers" type="ns1:stringArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setMultiStorage">
+    <wsdl:part name="storageEntityList" type="tns:storageArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteParents">
+    <wsdl:part name="deleteParents" type="ns1:stringArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnreservedServersResponse">
+    <wsdl:part name="UnreservedServers" type="tns:serverArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addParentResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="init">
+  </wsdl:message>
+  <wsdl:message name="setSingleStorage">
+    <wsdl:part name="storageEntity" type="tns:storage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="initResponse">
+  </wsdl:message>
+  <wsdl:message name="deleteServerStatistics">
+    <wsdl:part name="deleteServerStatistics" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServerStatsResponse">
+    <wsdl:part name="Statistics" type="tns:statistics">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getParent">
+    <wsdl:part name="getServer" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServerStorageInfoResponse">
+    <wsdl:part name="Storage" type="tns:storageArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setReservationResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ReservationSystemEndpoint">
+    <wsdl:operation name="getAllServerStats">
+      <wsdl:input message="tns:getAllServerStats" name="getAllServerStats">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllServerStatsResponse" name="getAllServerStatsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReservations">
+      <wsdl:input message="tns:getReservations" name="getReservations">
+    </wsdl:input>
+      <wsdl:output message="tns:getReservationsResponse" name="getReservationsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addParent">
+      <wsdl:input message="tns:addParent" name="addParent">
+    </wsdl:input>
+      <wsdl:output message="tns:addParentResponse" name="addParentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUsers">
+      <wsdl:input message="tns:deleteUsers" name="deleteUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteUsersResponse" name="deleteUsersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setReservation">
+      <wsdl:input message="tns:setReservation" name="setReservation">
+    </wsdl:input>
+      <wsdl:output message="tns:setReservationResponse" name="setReservationResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <wsdl:input message="tns:getUsers" name="getUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersResponse" name="getUsersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getParent">
+      <wsdl:input message="tns:getParent" name="getParent">
+    </wsdl:input>
+      <wsdl:output message="tns:getParentResponse" name="getParentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteServers">
+      <wsdl:input message="tns:deleteServers" name="deleteServers">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteServersResponse" name="deleteServersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnreservedServers">
+      <wsdl:input message="tns:getUnreservedServers" name="getUnreservedServers">
+    </wsdl:input>
+      <wsdl:output message="tns:getUnreservedServersResponse" name="getUnreservedServersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setServerStats">
+      <wsdl:input message="tns:setServerStats" name="setServerStats">
+    </wsdl:input>
+      <wsdl:output message="tns:setServerStatsResponse" name="setServerStatsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addServer">
+      <wsdl:input message="tns:addServer" name="addServer">
+    </wsdl:input>
+      <wsdl:output message="tns:addServerResponse" name="addServerResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setMultiStorage">
+      <wsdl:input message="tns:setMultiStorage" name="setMultiStorage">
+    </wsdl:input>
+      <wsdl:output message="tns:setMultiStorageResponse" name="setMultiStorageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServerStats">
+      <wsdl:input message="tns:getServerStats" name="getServerStats">
+    </wsdl:input>
+      <wsdl:output message="tns:getServerStatsResponse" name="getServerStatsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServers">
+      <wsdl:input message="tns:getServers" name="getServers">
+    </wsdl:input>
+      <wsdl:output message="tns:getServersResponse" name="getServersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setUser">
+      <wsdl:input message="tns:setUser" name="setUser">
+    </wsdl:input>
+      <wsdl:output message="tns:setUserResponse" name="setUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setServer">
+      <wsdl:input message="tns:setServer" name="setServer">
+    </wsdl:input>
+      <wsdl:output message="tns:setServerResponse" name="setServerResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServer">
+      <wsdl:input message="tns:getServer" name="getServer">
+    </wsdl:input>
+      <wsdl:output message="tns:getServerResponse" name="getServerResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="init">
+      <wsdl:input message="tns:init" name="init">
+    </wsdl:input>
+      <wsdl:output message="tns:initResponse" name="initResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUser">
+      <wsdl:input message="tns:addUser" name="addUser">
+    </wsdl:input>
+      <wsdl:output message="tns:addUserResponse" name="addUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReservedServers">
+      <wsdl:input message="tns:getReservedServers" name="getReservedServers">
+    </wsdl:input>
+      <wsdl:output message="tns:getReservedServersResponse" name="getReservedServersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllStorageInfo">
+      <wsdl:input message="tns:getAllStorageInfo" name="getAllStorageInfo">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllStorageInfoResponse" name="getAllStorageInfoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setExpiration">
+      <wsdl:input message="tns:setExpiration" name="setExpiration">
+    </wsdl:input>
+      <wsdl:output message="tns:setExpirationResponse" name="setExpirationResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <wsdl:input message="tns:getUser" name="getUser">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserResponse" name="getUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteServerStorage">
+      <wsdl:input message="tns:deleteServerStorage" name="deleteServerStorage">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteServerStorageResponse" name="deleteServerStorageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServerStorageInfo">
+      <wsdl:input message="tns:getServerStorageInfo" name="getServerStorageInfo">
+    </wsdl:input>
+      <wsdl:output message="tns:getServerStorageInfoResponse" name="getServerStorageInfoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getParents">
+      <wsdl:input message="tns:getParents" name="getParents">
+    </wsdl:input>
+      <wsdl:output message="tns:getParentsResponse" name="getParentsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteStorageEntity">
+      <wsdl:input message="tns:deleteStorageEntity" name="deleteStorageEntity">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteStorageEntityResponse" name="deleteStorageEntityResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteServerStatistics">
+      <wsdl:input message="tns:deleteServerStatistics" name="deleteServerStatistics">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteServerStatisticsResponse" name="deleteServerStatisticsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteParents">
+      <wsdl:input message="tns:deleteParents" name="deleteParents">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteParentsResponse" name="deleteParentsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setSingleStorage">
+      <wsdl:input message="tns:setSingleStorage" name="setSingleStorage">
+    </wsdl:input>
+      <wsdl:output message="tns:setSingleStorageResponse" name="setSingleStorageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ReservationSystemEndpointServiceSoapBinding" type="tns:ReservationSystemEndpoint">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllServerStats">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getAllServerStats">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllServerStatsResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addParent">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="addParent">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addParentResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReservations">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getReservations">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReservationsResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUsers">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="deleteUsers">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteUsersResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setReservation">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="setReservation">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setReservationResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getUsers">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getParent">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getParent">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getParentResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteServers">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="deleteServers">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteServersResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnreservedServers">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getUnreservedServers">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUnreservedServersResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setServerStats">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="setServerStats">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setServerStatsResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addServer">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="addServer">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addServerResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServerStats">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getServerStats">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getServerStatsResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setMultiStorage">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="setMultiStorage">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setMultiStorageResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServers">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getServers">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getServersResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setServer">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="setServer">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setServerResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setUser">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="setUser">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setUserResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServer">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getServer">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getServerResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="init">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="init">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="initResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUser">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="addUser">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addUserResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReservedServers">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getReservedServers">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReservedServersResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllStorageInfo">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getAllStorageInfo">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllStorageInfoResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setExpiration">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="setExpiration">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setExpirationResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteServerStorage">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="deleteServerStorage">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteServerStorageResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getUser">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServerStorageInfo">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getServerStorageInfo">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getServerStorageInfoResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getParents">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getParents">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getParentsResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteStorageEntity">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="deleteStorageEntity">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteStorageEntityResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteServerStatistics">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="deleteServerStatistics">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteServerStatisticsResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteParents">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="deleteParents">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteParentsResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setSingleStorage">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="setSingleStorage">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setSingleStorageResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReservationSystemEndpointService">
+    <wsdl:port binding="tns:ReservationSystemEndpointServiceSoapBinding" name="ReservationSystemEndpointPort">
+      <soap:address location="http://localhost:8080/iaas-reservation-service/server"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

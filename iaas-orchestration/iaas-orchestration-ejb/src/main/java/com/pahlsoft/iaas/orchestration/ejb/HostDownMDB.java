@@ -32,35 +32,6 @@ public class HostDownMDB implements MessageListener {
 			e.printStackTrace();
 		}
           System.out.println("Processing Host Down Message ID: " + eventId);
-//          // Make a SOAP Call
-//          ReservationSystemEndpointProxy endpoint = new ReservationSystemEndpointProxy(); 
-//	    
-//          ArrayList<Server> servers = new ArrayList<Server>();
-//	      Server serverObj = new Server();
-//	     	User userObj = new User();
-//	      	// Null Or Blank User Values (since they are not needed on the SOAP service)
-//		      userObj.setFirstName("blank");
-//		      userObj.setLastName("blank");
-//		      userObj.setLoginId("blank");
-//		      userObj.setPhoneNumber("blank");
-//		      userObj.setUserId(0);
-//	      serverObj.setServerUser(userObj);
-//	      serverObj.setServerCategory(Category.LARGE);
-//	      serverObj.setServerId(0);
-//	      serverObj.setServerStatus(Status.OFFLINE);
-//	      serverObj.setExpirationDate("00000000");
-//	      serverObj.setStartDate("00000000");
-//	      serverObj.setServerName(eventText);
-//	      servers.add(serverObj);
-//	      
-//	      // Convert to an ArrayList to an Array
-//	   	  Server[] _serverArray = servers.toArray(new Server[servers.size()]);
-	   	  // Expire the Server 
-//        try {
-//			endpoint.setExpiration(_serverArray);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
 
      }
 

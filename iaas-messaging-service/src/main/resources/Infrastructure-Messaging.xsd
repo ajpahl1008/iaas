@@ -6,7 +6,7 @@
 	<xs:complexType name="IaasEvent">
 		<xs:sequence>
 			<xs:element minOccurs="1" name="eventId" type="xs:int" />
-			<xs:element minOccurs="1" name="eventDate" type="xs:decimal" />
+			<xs:element minOccurs="1" name="eventDate" type="xs:string" />
 			<xs:element minOccurs="1" name="correlationId" type="xs:string" />
 			<xs:element minOccurs="1" name="eventInfo" type="xs:string" />
 		</xs:sequence>
@@ -15,7 +15,7 @@
 	<xs:complexType name="IaasError">
 		<xs:sequence>
 			<xs:element minOccurs="1" name="errorId" type="xs:int" />
-			<xs:element minOccurs="1" name="errorDate" type="xs:decimal" />
+			<xs:element minOccurs="1" name="errorDate" type="xs:string" />
 			<xs:element minOccurs="1" name="correlationId" type="xs:string" />
 			<xs:element minOccurs="1" name="errorInfo" type="xs:string" />
 		</xs:sequence>

@@ -5,22 +5,22 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package com.pahlsoft.iaas.ws;
+package com.pahlsoft.iaas.ws.reservation;
 
 public class Server  implements java.io.Serializable {
     private int serverId;
 
     private java.lang.String serverName;
 
-    private com.pahlsoft.iaas.ws.Category serverCategory;
+    private com.pahlsoft.iaas.ws.reservation.Category serverCategory;
 
-    private com.pahlsoft.iaas.ws.User serverUser;
+    private com.pahlsoft.iaas.ws.reservation.User serverUser;
 
     private java.lang.String startDate;
 
     private java.lang.String expirationDate;
 
-    private com.pahlsoft.iaas.ws.Status serverStatus;
+    private com.pahlsoft.iaas.ws.reservation.Status serverStatus;
 
     private java.lang.String parentName;
 
@@ -28,7 +28,7 @@ public class Server  implements java.io.Serializable {
 
     private java.lang.String dnsName;
 
-    private com.pahlsoft.iaas.ws.OperatingSystemEnum operatingSystem;
+    private com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum operatingSystem;
 
     public Server() {
     }
@@ -36,15 +36,15 @@ public class Server  implements java.io.Serializable {
     public Server(
            int serverId,
            java.lang.String serverName,
-           com.pahlsoft.iaas.ws.Category serverCategory,
-           com.pahlsoft.iaas.ws.User serverUser,
+           com.pahlsoft.iaas.ws.reservation.Category serverCategory,
+           com.pahlsoft.iaas.ws.reservation.User serverUser,
            java.lang.String startDate,
            java.lang.String expirationDate,
-           com.pahlsoft.iaas.ws.Status serverStatus,
+           com.pahlsoft.iaas.ws.reservation.Status serverStatus,
            java.lang.String parentName,
            java.lang.String ipAddress,
            java.lang.String dnsName,
-           com.pahlsoft.iaas.ws.OperatingSystemEnum operatingSystem) {
+           com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum operatingSystem) {
            this.serverId = serverId;
            this.serverName = serverName;
            this.serverCategory = serverCategory;
@@ -104,7 +104,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @return serverCategory
      */
-    public com.pahlsoft.iaas.ws.Category getServerCategory() {
+    public com.pahlsoft.iaas.ws.reservation.Category getServerCategory() {
         return serverCategory;
     }
 
@@ -114,7 +114,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @param serverCategory
      */
-    public void setServerCategory(com.pahlsoft.iaas.ws.Category serverCategory) {
+    public void setServerCategory(com.pahlsoft.iaas.ws.reservation.Category serverCategory) {
         this.serverCategory = serverCategory;
     }
 
@@ -124,7 +124,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @return serverUser
      */
-    public com.pahlsoft.iaas.ws.User getServerUser() {
+    public com.pahlsoft.iaas.ws.reservation.User getServerUser() {
         return serverUser;
     }
 
@@ -134,7 +134,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @param serverUser
      */
-    public void setServerUser(com.pahlsoft.iaas.ws.User serverUser) {
+    public void setServerUser(com.pahlsoft.iaas.ws.reservation.User serverUser) {
         this.serverUser = serverUser;
     }
 
@@ -184,7 +184,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @return serverStatus
      */
-    public com.pahlsoft.iaas.ws.Status getServerStatus() {
+    public com.pahlsoft.iaas.ws.reservation.Status getServerStatus() {
         return serverStatus;
     }
 
@@ -194,7 +194,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @param serverStatus
      */
-    public void setServerStatus(com.pahlsoft.iaas.ws.Status serverStatus) {
+    public void setServerStatus(com.pahlsoft.iaas.ws.reservation.Status serverStatus) {
         this.serverStatus = serverStatus;
     }
 
@@ -264,7 +264,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @return operatingSystem
      */
-    public com.pahlsoft.iaas.ws.OperatingSystemEnum getOperatingSystem() {
+    public com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum getOperatingSystem() {
         return operatingSystem;
     }
 
@@ -274,7 +274,7 @@ public class Server  implements java.io.Serializable {
      * 
      * @param operatingSystem
      */
-    public void setOperatingSystem(com.pahlsoft.iaas.ws.OperatingSystemEnum operatingSystem) {
+    public void setOperatingSystem(com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum operatingSystem) {
         this.operatingSystem = operatingSystem;
     }
 

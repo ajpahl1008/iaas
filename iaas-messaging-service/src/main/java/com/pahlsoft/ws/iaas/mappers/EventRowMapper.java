@@ -15,7 +15,7 @@ public class EventRowMapper implements RowMapper<IaasEvent>{
 			IaasEvent event = new IaasEvent();
 						
 			event.setEventId(rs.getInt("eventID"));
-			event.setEventDate(rs.getBigDecimal("event_date"));
+			event.setEventDate(rs.getString("event_date"));
 			event.setCorrelationId(rs.getString("event_cid"));
 			event.setEventInfo(rs.getString("event_info"));
 			

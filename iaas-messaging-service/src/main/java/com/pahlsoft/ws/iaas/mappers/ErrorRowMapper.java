@@ -15,7 +15,7 @@ public class ErrorRowMapper implements RowMapper<IaasError>{
 			IaasError error = new IaasError();
 						
 			error.setErrorId(rs.getInt("errorID"));
-			error.setErrorDate(rs.getBigDecimal("error_date"));
+			error.setErrorDate(rs.getString("error_date"));
 			error.setCorrelationId(rs.getString("error_cid"));
 			error.setErrorInfo(rs.getString("error_info"));
 			
