@@ -22,8 +22,6 @@ import com.pahlsoft.iaas.ws.messaging.IaasEvent;
 }) 
 @ResourceAdapter("activemq-rar-5.6-SNAPSHOT.rar")
 public class EventMDB implements MessageListener {
-	String eventText;
-	String eventId;
 
      public void onMessage(Message message) {
     	TextMessage txtMsg = (TextMessage) message;
@@ -39,11 +37,9 @@ public class EventMDB implements MessageListener {
         	iaasEvent.setEventId(0);
         	iaasEvent.setEventDate(todaysDate);
 		} catch (JMSException e) {
-			eventText="";
-			eventId="";
 			e.printStackTrace();
 		}
-        System.out.println("Processing IaaS Event ID: " + eventId);
+        System.out.println("Processing IaaS Event ID: " + iaasEvent.getCorrelationId());
         EventMessageExecutor eme = new EventMessageExecutor();
         eme.sendMessage(iaasEvent);
 

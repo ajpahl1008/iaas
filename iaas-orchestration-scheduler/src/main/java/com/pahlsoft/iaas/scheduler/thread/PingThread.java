@@ -28,12 +28,11 @@ public class PingThread implements Runnable {
 		LOG.info("Thread ID: " + Thread.currentThread().getId());
 		for (String serverName: names) {
 			try {
-				if(InetAddress.getByName(targets.get(serverName)).isReachable(1000)) {
+				if(InetAddress.getByName(targets.get(serverName)).isReachable(Integer.getInteger(System.getProperty("iaas.orchestration.scheduler.timeout")))) {
 					LOG.info("Host: " + serverName + " IP: " + targets.get(serverName) + " available");
 				} else {
 					LOG.info("Host: " + serverName + " IP: " + targets.get(serverName) + " down");
 					Publisher.publish("hostDownQueue", serverName);
-					//TODO: Add Event Message to Events Service
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

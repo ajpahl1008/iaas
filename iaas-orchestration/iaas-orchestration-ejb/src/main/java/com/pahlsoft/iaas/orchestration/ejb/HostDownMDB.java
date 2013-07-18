@@ -1,7 +1,9 @@
 package com.pahlsoft.iaas.orchestration.ejb;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -11,6 +13,9 @@ import javax.ejb.*;
 
 import org.jboss.ejb3.annotation.ResourceAdapter;
 
+import com.pahlsoft.iaas.executors.impl.EventMessageExecutor;
+import com.pahlsoft.iaas.ws.messaging.IaasEvent;
+
 @MessageDriven(name = "HostDownMDB", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "hostDownQueue"),
@@ -18,20 +23,26 @@ import org.jboss.ejb3.annotation.ResourceAdapter;
 }) 
 @ResourceAdapter("activemq-rar-5.6-SNAPSHOT.rar")
 public class HostDownMDB implements MessageListener {
-	String eventText;
-	String eventId;
 
      public void onMessage(Message message) {
-    	  TextMessage txtMsg = (TextMessage) message;
-         try {
-        	eventText = txtMsg.getText();
-        	eventId = txtMsg.getJMSCorrelationID();
-		} catch (JMSException e) {
-			eventText="";
-			eventId="";
-			e.printStackTrace();
-		}
-          System.out.println("Processing Host Down Message ID: " + eventId);
+    	 TextMessage txtMsg = (TextMessage) message;
+         IaasEvent iaasEvent = new IaasEvent();
+
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+       	Date date = new Date();
+       	String todaysDate = sdf.format(date); 
+
+         System.out.println("Processing Host Down Event ID: " + iaasEvent.getCorrelationId());
+          try {
+         	iaasEvent.setEventInfo("Host Down: " + txtMsg.getText());
+         	iaasEvent.setCorrelationId(txtMsg.getJMSCorrelationID());
+         	iaasEvent.setEventId(0);
+         	iaasEvent.setEventDate(todaysDate);
+ 		} catch (JMSException e) {
+ 			e.printStackTrace();
+ 		}
+         EventMessageExecutor eme = new EventMessageExecutor();
+         eme.sendMessage(iaasEvent);
 
      }
 

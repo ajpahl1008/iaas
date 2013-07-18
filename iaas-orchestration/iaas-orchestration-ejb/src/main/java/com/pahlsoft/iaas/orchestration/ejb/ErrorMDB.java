@@ -22,8 +22,6 @@ import com.pahlsoft.iaas.ws.messaging.IaasError;
 }) 
 @ResourceAdapter("activemq-rar-5.6-SNAPSHOT.rar")
 public class ErrorMDB implements MessageListener {
-	String eventText;
-	String eventId;
 
      public void onMessage(Message message) {
     	 TextMessage txtMsg = (TextMessage) message;
@@ -39,11 +37,9 @@ public class ErrorMDB implements MessageListener {
          	iaasError.setErrorId(0);
          	iaasError.setErrorDate(todaysDate);
  		} catch (JMSException e) {
- 			eventText="";
- 			eventId="";
  			e.printStackTrace();
  		}
-         System.out.println("Processing IaaS Error ID: " + eventId);
+         System.out.println("Processing IaaS Error ID: " + iaasError.getCorrelationId());
          ErrorMessageExecutor eme = new ErrorMessageExecutor();
          eme.sendMessage(iaasError);
      }
