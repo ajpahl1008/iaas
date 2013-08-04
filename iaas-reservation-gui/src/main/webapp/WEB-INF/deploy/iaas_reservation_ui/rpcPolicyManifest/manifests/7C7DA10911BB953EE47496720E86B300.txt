@@ -1,0 +1,2 @@
+serviceClass: com.pahlsoft.iaas.ui.client.MessagingService
+path: 1A4AE169CD2816EEC1405AFED65F521F.gwt.rpc
