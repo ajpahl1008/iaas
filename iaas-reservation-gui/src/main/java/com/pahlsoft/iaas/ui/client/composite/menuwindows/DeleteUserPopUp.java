@@ -103,14 +103,9 @@ public class DeleteUserPopUp extends Window  {
 		    		    // Do nothing
 		    		    } else {
 		    		    	ReservationServiceAsync reservationService = GWT.create(ReservationService.class);
-		    		    	ArrayList<AsyncUser> tmpList = new ArrayList<AsyncUser>();
-		    		    	ArrayList<String> sList = new ArrayList<String>();
-		    		    	tmpList.addAll(userList.getToList().getStore().getModels());
-		    		    	for (AsyncUser user: tmpList) {
-		    		    		sList.add(user.getLoginId());
-		    		    		getReservations(reservationService, user.getLoginId());
-		    		    	}
-		    		    	deleteUsers(reservationService, sList);
+		    		    	ArrayList<AsyncUser> uList = new ArrayList<AsyncUser>();
+		    		    	uList.addAll(userList.getToList().getStore().getModels());
+		    		    	deleteUsers(reservationService, uList);
 		    		    }
 		    		DeleteUserPopUp.this.hide();  
 		    	}
@@ -146,54 +141,52 @@ public class DeleteUserPopUp extends Window  {
 		return _asyncUserList;
 	}
 	
-	public void deleteUsers(ReservationServiceAsync reservationService, ArrayList<String> users) {
+	public void deleteUsers(final ReservationServiceAsync reservationService, final ArrayList<AsyncUser> users) {
+
+		final ArrayList<String> userList = new ArrayList<String>();
+		for (AsyncUser aUser : users) { 
+			userList.add(aUser.getLoginId());
+		}
 		
-		reservationService.deleteUsers(users, new AsyncCallback<Integer>() {
-
-			public void onFailure(Throwable caught) {
-				com.google.gwt.user.client.Window.alert("Something Bad Happened Reserving Server(s)");
-			}
-
-			public void onSuccess(Integer result) {
-				Info.display("Reservation Service Response","Deleted " + result.toString() + " number of users.");
-				eventBus.fireEvent(new DataChangeEvent());
-			}
-			
-		});
-	}
+		final ArrayList<String> serverList = new ArrayList<String>();
+		for (String sUser : userList) {
+			reservationService.getReservations(sUser, new AsyncCallback<List<String>>() {
 	
-	public List<String> getReservations(final ReservationServiceAsync reservationService, String userName) {
-		final ArrayList<String> _serverList = new ArrayList<String>();
-		reservationService.getReservations(userName, new AsyncCallback<List<String>>() {
-
-			public void onFailure(Throwable caught) {
-				com.google.gwt.user.client.Window.alert("Something Bad Happened Reserving Server(s)");
-			}
-
-			public void onSuccess(List<String> result) {
-				_serverList.addAll(result);
-				Info.display("Reservation Service Response","User Has " + result.toString() + " number of servers reserved.");
-				setExpiration(reservationService, _serverList);
-			}
-		});
-		return _serverList;
+				public void onFailure(Throwable caught) {
+					com.google.gwt.user.client.Window.alert("Something Bad Happened Getting Reservations");
+				}
+	
+				public void onSuccess(List<String> result) {
+					serverList.addAll(result);
+					Info.display("Reservation Service Response","User Has " + result.toString() + " number of servers reserved.");
+					reservationService.setExpiration(serverList, new AsyncCallback<Integer>() {
+						
+						public void onFailure(Throwable caught) {
+							com.google.gwt.user.client.Window.alert("Something Bad Happened Expiring Server(s)");
+						}
+						
+						public void onSuccess(Integer result) {
+							Info.display("Reservation Service Response","Manually Expired " + serverList.size() + " number of servers.");
+							eventBus.fireEvent(new DataChangeEvent());
+							reservationService.deleteUsers(userList, new AsyncCallback<Integer>() {
+								
+								public void onFailure(Throwable caught) {
+									com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting User(s)");
+								}
+								
+								public void onSuccess(Integer result) {
+									Info.display("Reservation Service Response","Deleted " + result.toString() + " number of users.");
+									eventBus.fireEvent(new DataChangeEvent());
+								}
+								
+							});
+						}
+					});
+				}
+			});
+		
+		}
 		
 	}
-	
-	
-	public void setExpiration(ReservationServiceAsync reservationService, ArrayList<String> servers) {
-		
-		reservationService.setExpiration(servers, new AsyncCallback<Integer>() {
 
-			public void onFailure(Throwable caught) {
-				com.google.gwt.user.client.Window.alert("Something Bad Happened Manually Expiring Server(s)");
-			}
-
-			public void onSuccess(Integer result) {
-				eventBus.fireEvent(new DataChangeEvent());
-				Info.display("Reservation Service Response","Manually Expired " + result.toString() + " number of servers.");
-			}
-			
-		});
-	}
 }

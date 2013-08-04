@@ -10,15 +10,15 @@ import com.pahlsoft.iaas.ui.client.AsyncStatistics;
 import com.pahlsoft.iaas.ui.client.AsyncStorage;
 import com.pahlsoft.iaas.ui.client.AsyncUser;
 import com.pahlsoft.iaas.ui.client.ReservationService;
-import com.pahlsoft.ws.iaas.clients.reservation.Category;
-import com.pahlsoft.ws.iaas.clients.reservation.OperatingSystemEnum;
-import com.pahlsoft.ws.iaas.clients.reservation.Parent;
-import com.pahlsoft.ws.iaas.clients.reservation.ReservationSystemEndpointProxy;
-import com.pahlsoft.ws.iaas.clients.reservation.Server;
-import com.pahlsoft.ws.iaas.clients.reservation.Statistics;
-import com.pahlsoft.ws.iaas.clients.reservation.Status;
-import com.pahlsoft.ws.iaas.clients.reservation.Storage;
-import com.pahlsoft.ws.iaas.clients.reservation.User;
+import com.pahlsoft.iaas.ws.reservation.Category;
+import com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum;
+import com.pahlsoft.iaas.ws.reservation.Parent;
+import com.pahlsoft.iaas.ws.reservation.ReservationSystemEndpointProxy;
+import com.pahlsoft.iaas.ws.reservation.Server;
+import com.pahlsoft.iaas.ws.reservation.Statistics;
+import com.pahlsoft.iaas.ws.reservation.Status;
+import com.pahlsoft.iaas.ws.reservation.Storage;
+import com.pahlsoft.iaas.ws.reservation.User;
 
 
 /**
@@ -194,8 +194,8 @@ public class ReservationServiceImpl extends RemoteServiceServlet implements	Rese
 		ReservationSystemEndpointProxy endpoint = new ReservationSystemEndpointProxy();
 
 		try {
-			for (String server : endpoint.getReservations(userName)) {
-				serverList.add(server);
+			for (Server server : endpoint.getReservations(userName)) {
+				serverList.add(server.getServerName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

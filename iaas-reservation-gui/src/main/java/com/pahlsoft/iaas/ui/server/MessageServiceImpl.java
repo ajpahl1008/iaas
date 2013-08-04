@@ -7,9 +7,10 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.pahlsoft.iaas.ui.client.AsyncError;
 import com.pahlsoft.iaas.ui.client.AsyncEvent;
 import com.pahlsoft.iaas.ui.client.MessagingService;
-import com.pahlsoft.ws.iaas.clients.messaging.IaasError;
-import com.pahlsoft.ws.iaas.clients.messaging.IaasEvent;
-import com.pahlsoft.ws.iaas.clients.messaging.MessageSystemEndpointProxy;
+import com.pahlsoft.iaas.ws.messaging.IaasError;
+import com.pahlsoft.iaas.ws.messaging.IaasEvent;
+import com.pahlsoft.iaas.ws.messaging.MessageSystemEndpointProxy;
+
 
 /**
  * The server side implementation of the RPC service.
