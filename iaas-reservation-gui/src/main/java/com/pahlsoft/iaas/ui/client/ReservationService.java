@@ -23,7 +23,7 @@ public interface ReservationService extends RemoteService {
 	List<AsyncUser> getUser(AsyncUser userName) throws IllegalArgumentException;
 	List<AsyncParent> getParents() throws IllegalArgumentException;
 	List<AsyncParent> getParent(String parentName) throws IllegalArgumentException;
-	
+    List<String>	getChildrenByParent(String parentName) throws IllegalArgumentException;	
 	// Setters
 	Integer setReservation(ArrayList<AsyncServer> servers, String userId) throws IllegalArgumentException;
 	Integer setExpiration(ArrayList<String> servers) throws IllegalArgumentException;

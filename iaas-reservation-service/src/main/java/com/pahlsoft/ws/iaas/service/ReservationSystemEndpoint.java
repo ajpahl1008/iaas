@@ -122,6 +122,12 @@ public class ReservationSystemEndpoint extends SpringBeanAutowiringSupport {
 	}
 	
 	@WebMethod
+	@WebResult(name="ChildrenByParent")
+	public List<String> getChildrenByParent(@WebParam(name="getChildrenByParent", targetNamespace="http://iaas.ws.pahlsoft.com") String parentName) throws Exception {
+		return serverDao.getChildrenByParent(parentName);
+	}
+	
+	@WebMethod
 	@WebResult(name="Servers")
 	public List<Server> getServers() throws Exception {
 		return serverDao.getServers();

@@ -13,6 +13,7 @@ public interface ServerDao {
 	public List<Server> getReservedServers();
 	public List<Server> getReservations(String userName);
 	public List<Parent> getParents();
+	public List<String> getChildrenByParent(String parentName) ;
 	public Parent getParent(String serverName);
 
 	public int setServer(Server serverInfo);

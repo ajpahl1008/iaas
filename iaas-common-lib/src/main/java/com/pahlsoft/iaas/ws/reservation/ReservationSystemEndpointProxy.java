@@ -176,6 +176,12 @@ public class ReservationSystemEndpointProxy implements com.pahlsoft.iaas.ws.rese
     return reservationSystemEndpoint.setExpiration(servers);
   }
   
+  public java.lang.String[] getChildrenByParent(java.lang.String getChildrenByParent) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception{
+    if (reservationSystemEndpoint == null)
+      _initReservationSystemEndpointProxy();
+    return reservationSystemEndpoint.getChildrenByParent(getChildrenByParent);
+  }
+  
   public com.pahlsoft.iaas.ws.reservation.User[] getUser(java.lang.String userName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception{
     if (reservationSystemEndpoint == null)
       _initReservationSystemEndpointProxy();

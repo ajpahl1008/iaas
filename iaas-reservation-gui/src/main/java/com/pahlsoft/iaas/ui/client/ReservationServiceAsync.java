@@ -29,6 +29,8 @@ public interface ReservationServiceAsync {
 	void getParents(AsyncCallback<List<AsyncParent>> asyncCallback);
 	void getParent(String parentName, AsyncCallback<List<AsyncParent>> asyncCallback);
 	
+	void getChildrenByParent(String parentName, AsyncCallback<List<String>> asyncCallback);
+	
 	// Setters
 	void setReservation(ArrayList<AsyncServer> servers, String userId, AsyncCallback<Integer> asyncCallback);
 	void setExpiration(ArrayList<String> servers, AsyncCallback<Integer> asyncCallback);

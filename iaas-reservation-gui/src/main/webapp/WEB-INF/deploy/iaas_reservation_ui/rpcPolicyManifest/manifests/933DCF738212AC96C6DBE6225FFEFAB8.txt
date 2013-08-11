@@ -1,2 +1,0 @@
-serviceClass: com.pahlsoft.iaas.ui.client.ReservationService
-path: B721573B7C6E7610D99FCA89E780804F.gwt.rpc

@@ -16,10 +16,11 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[30];
+        _operations = new org.apache.axis.description.OperationDesc[31];
         _initOperationDesc1();
         _initOperationDesc2();
         _initOperationDesc3();
+        _initOperationDesc4();
     }
 
     private static void _initOperationDesc1(){
@@ -411,12 +412,14 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         _operations[21] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("deleteServerStorage");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "deleteServerStorage"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.setName("getChildrenByParent");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "getChildrenByParent"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
-        oper.setReturnClass(int.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setReturnType(new javax.xml.namespace.QName("http://jaxb.dev.java.net/array", "stringArray"));
+        oper.setReturnClass(java.lang.String[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "ChildrenByParent"));
+        param = oper.getReturnParamDesc();
+        param.setItemQName(new javax.xml.namespace.QName("", "item"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         oper.addFault(new org.apache.axis.description.FaultDesc(
@@ -447,6 +450,23 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         _operations[23] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("deleteServerStorage");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "deleteServerStorage"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        oper.setReturnClass(int.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setStyle(org.apache.axis.constants.Style.RPC);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        oper.addFault(new org.apache.axis.description.FaultDesc(
+                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"),
+                      "com.pahlsoft.ws.iaas.Exception",
+                      new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
+                      true
+                     ));
+        _operations[24] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getServerStorageInfo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "serverName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
@@ -463,7 +483,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[24] = oper;
+        _operations[25] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getParents");
@@ -480,7 +500,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[25] = oper;
+        _operations[26] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("deleteStorageEntity");
@@ -497,7 +517,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[26] = oper;
+        _operations[27] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("deleteServerStatistics");
@@ -514,7 +534,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[27] = oper;
+        _operations[28] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("deleteParents");
@@ -532,8 +552,13 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[28] = oper;
+        _operations[29] = oper;
 
+    }
+
+    private static void _initOperationDesc4(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("setSingleStorage");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "storageEntity"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "storage"), com.pahlsoft.iaas.ws.reservation.Storage.class, false, false);
@@ -549,7 +574,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
                       new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "Exception"), 
                       true
                      ));
-        _operations[29] = oper;
+        _operations[30] = oper;
 
     }
 
@@ -1674,7 +1699,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 }
     }
 
-    public int deleteServerStorage(java.lang.String deleteServerStorage) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
+    public java.lang.String[] getChildrenByParent(java.lang.String getChildrenByParent) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -1686,11 +1711,11 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "deleteServerStorage"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "getChildrenByParent"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {deleteServerStorage});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {getChildrenByParent});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
@@ -1698,9 +1723,9 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
         else {
             extractAttachments(_call);
             try {
-                return ((java.lang.Integer) _resp).intValue();
+                return (java.lang.String[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return ((java.lang.Integer) org.apache.axis.utils.JavaUtils.convert(_resp, int.class)).intValue();
+                return (java.lang.String[]) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -1758,12 +1783,54 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
 }
     }
 
-    public com.pahlsoft.iaas.ws.reservation.Storage[] getServerStorageInfo(java.lang.String serverName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
+    public int deleteServerStorage(java.lang.String deleteServerStorage) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[24]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "deleteServerStorage"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {deleteServerStorage});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return ((java.lang.Integer) _resp).intValue();
+            } catch (java.lang.Exception _exception) {
+                return ((java.lang.Integer) org.apache.axis.utils.JavaUtils.convert(_resp, int.class)).intValue();
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof com.pahlsoft.iaas.ws.reservation.Exception) {
+              throw (com.pahlsoft.iaas.ws.reservation.Exception) axisFaultException.detail;
+         }
+   }
+  throw axisFaultException;
+}
+    }
+
+    public com.pahlsoft.iaas.ws.reservation.Storage[] getServerStorageInfo(java.lang.String serverName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[25]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -1805,7 +1872,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[25]);
+        _call.setOperation(_operations[26]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -1847,7 +1914,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[26]);
+        _call.setOperation(_operations[27]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -1889,7 +1956,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[27]);
+        _call.setOperation(_operations[28]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -1931,7 +1998,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[28]);
+        _call.setOperation(_operations[29]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -1973,7 +2040,7 @@ public class ReservationSystemEndpointServiceSoapBindingStub extends org.apache.
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[29]);
+        _call.setOperation(_operations[30]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);

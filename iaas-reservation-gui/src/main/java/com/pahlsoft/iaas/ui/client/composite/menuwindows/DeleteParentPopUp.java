@@ -98,7 +98,6 @@ public class DeleteParentPopUp extends Window  {
 		    	if (parentList.getToList().getListView().getItemCount() == 0 ) {
 		    		MessageBox.alert("Invalid Selection","No Parent(s) Selected", null);
 		    	} else {
-		    		System.out.println("DEBUG: Deleting " + parentList.getToList().getStore().getCount() + " parents");
 		    		
 		    		if (Beans.isDesignTime()) {
 		    		    // Do nothing
@@ -109,9 +108,8 @@ public class DeleteParentPopUp extends Window  {
 		    		    	tmpList.addAll(parentList.getToList().getStore().getModels());
 		    		    	for (AsyncParent parent : tmpList) {
 		    		    		sList.add(parent.getParentName());
-		    		    		System.out.println("DEBUG: Adding Parent " + parent.getParentName() + " to delete List");
 		    		    	}
-		    		    	deleteParents(reservationService, sList);
+		    		    	deleteChildrenByParent(reservationService, sList);
 		    		    }
 		    		DeleteParentPopUp.this.hide();  
 		    	}
@@ -147,19 +145,52 @@ public class DeleteParentPopUp extends Window  {
 		return _asyncParentList;
 	}
 	
-	public void deleteParents(ReservationServiceAsync reservationService, ArrayList<String> parents) {
-		
-		reservationService.deleteParents(parents, new AsyncCallback<Integer>() {
+	
+	public void deleteChildrenByParent(final ReservationServiceAsync reservationService, final ArrayList<String> parents) {
 
-			public void onFailure(Throwable caught) {
-				com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
-			}
-
-			public void onSuccess(Integer result) {
-				Info.display("Reservation Service Response","Deleted " + result.toString() + " number of parents.");
-				eventBus.fireEvent(new DataChangeEvent());
-			}
-			
-		});
+	    for (final String parent : parents) {
+	    	
+	    	reservationService.getChildrenByParent(parent, new AsyncCallback<List<String>>() {
+	    		
+	    		public void onFailure(Throwable caught) {
+	    			com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+	    		}
+	    		
+	    		public void onSuccess(List<String> result) {
+	    			Info.display("Reservation Service Response","Found " + result.size() + " number of children for parent " + parent);
+	    		    ArrayList<String> children = new ArrayList<String>();	
+	    		    children.addAll(result);
+	    			reservationService.deleteServers(children, new AsyncCallback<Integer>() {
+	    				
+	    				public void onFailure(Throwable caught) {
+	    					com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+	    				}
+	    				
+	    				public void onSuccess(Integer result) {
+	    					Info.display("Reservation Service Response","Deleted " + result.toString() + " number of children.");
+                    	    final ArrayList<String> targetParent = new ArrayList<String>();
+                            targetParent.add(parent);
+	    					reservationService.deleteParents(targetParent, new AsyncCallback<Integer>() {
+	    						
+	    						public void onFailure(Throwable caught) {
+	    							com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+	    						}
+	    						
+	    						public void onSuccess(Integer result) {
+	    							Info.display("Reservation Service Response","Deleted " + result.toString() + " number of parents.");
+	    							eventBus.fireEvent(new DataChangeEvent());
+	    							targetParent.clear();
+	    						}
+	    						
+	    					});
+	    				}
+	    				
+	    			});
+	    			
+	    		}
+	    		
+	    	});
+	    	
+	    }
 	}
 }

@@ -30,6 +30,7 @@ public interface ReservationSystemEndpoint extends java.rmi.Remote {
     public com.pahlsoft.iaas.ws.reservation.Server[] getReservedServers() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception;
     public com.pahlsoft.iaas.ws.reservation.Storage[] getAllStorageInfo() throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception;
     public int setExpiration(java.lang.String[] servers) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception;
+    public java.lang.String[] getChildrenByParent(java.lang.String getChildrenByParent) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception;
     public com.pahlsoft.iaas.ws.reservation.User[] getUser(java.lang.String userName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception;
     public int deleteServerStorage(java.lang.String deleteServerStorage) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception;
     public com.pahlsoft.iaas.ws.reservation.Storage[] getServerStorageInfo(java.lang.String serverName) throws java.rmi.RemoteException, com.pahlsoft.iaas.ws.reservation.Exception;

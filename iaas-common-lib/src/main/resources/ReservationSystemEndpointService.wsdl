@@ -168,6 +168,10 @@
     <wsdl:part name="userInfo" type="ns1:stringArray">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getChildrenByParent">
+    <wsdl:part name="getChildrenByParent" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="deleteServersResponse">
     <wsdl:part name="return" type="xsd:int">
     </wsdl:part>
@@ -270,12 +274,12 @@
     <wsdl:part name="ReservedServers" type="tns:serverArray">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getServerResponse">
-    <wsdl:part name="Server" type="tns:serverArray">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getUserResponse">
     <wsdl:part name="return" type="tns:userArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getServerResponse">
+    <wsdl:part name="Server" type="tns:serverArray">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deleteUsersResponse">
@@ -306,6 +310,10 @@
   </wsdl:message>
   <wsdl:message name="getServer">
     <wsdl:part name="getServer" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getChildrenByParentResponse">
+    <wsdl:part name="ChildrenByParent" type="ns1:stringArray">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addServerResponse">
@@ -539,6 +547,14 @@
       <wsdl:input message="tns:setExpiration" name="setExpiration">
     </wsdl:input>
       <wsdl:output message="tns:setExpirationResponse" name="setExpirationResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getChildrenByParent">
+      <wsdl:input message="tns:getChildrenByParent" name="getChildrenByParent">
+    </wsdl:input>
+      <wsdl:output message="tns:getChildrenByParentResponse" name="getChildrenByParentResponse">
     </wsdl:output>
       <wsdl:fault message="tns:Exception" name="Exception">
     </wsdl:fault>
@@ -871,12 +887,12 @@
         <soap:fault name="Exception" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="deleteServerStorage">
+    <wsdl:operation name="getChildrenByParent">
       <soap:operation soapAction="" style="rpc"/>
-      <wsdl:input name="deleteServerStorage">
+      <wsdl:input name="getChildrenByParent">
         <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
       </wsdl:input>
-      <wsdl:output name="deleteServerStorageResponse">
+      <wsdl:output name="getChildrenByParentResponse">
         <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
       </wsdl:output>
       <wsdl:fault name="Exception">
@@ -889,6 +905,18 @@
         <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
       </wsdl:input>
       <wsdl:output name="getUserResponse">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteServerStorage">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="deleteServerStorage">
+        <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteServerStorageResponse">
         <soap:body namespace="http://iaas.ws.pahlsoft.com" use="literal"/>
       </wsdl:output>
       <wsdl:fault name="Exception">
@@ -970,7 +998,7 @@
   </wsdl:binding>
   <wsdl:service name="ReservationSystemEndpointService">
     <wsdl:port binding="tns:ReservationSystemEndpointServiceSoapBinding" name="ReservationSystemEndpointPort">
-      <soap:address location="http://localhost:8080/iaas-reservation-service/server"/>
+      <soap:address location="http://localhost:8080/iaas-reservation-service-0.0.1-SNAPSHOT/server"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

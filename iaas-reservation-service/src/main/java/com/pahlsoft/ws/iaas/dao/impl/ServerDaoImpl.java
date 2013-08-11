@@ -447,6 +447,21 @@ public class ServerDaoImpl implements ServerDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);	
 	}
 
+	@Override
+	public List<String> getChildrenByParent(String parentName) {
+		int parentId = this.getParentId(parentName);
+
+		String sql = "select server_name from iaas.servers where parent_id='" + parentId +"'";
+		daoLog.info("Querying for Children for - " + parentName);
+		List<String> servers = new ArrayList<String>();
+		 
+		List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql);
+		for (Map<?, ?> row : rows) {
+			servers.add((String)row.get("server_name"));
+		}
+		return servers;
+	}
+
 
 
 	

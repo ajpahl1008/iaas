@@ -500,5 +500,19 @@ public class ReservationServiceImpl extends RemoteServiceServlet implements	Rese
 		return parentsDeleted;
 	}
 
+	@Override
+	public List<String> getChildrenByParent(String parentName) throws IllegalArgumentException {
+		ReservationSystemEndpointProxy endpoint = new ReservationSystemEndpointProxy();
+		List<String> servers = new ArrayList<String>();
+		
+		try {
+			for (String server :  endpoint.getChildrenByParent(parentName)) {
+				servers.add(server);
+			}
+		} catch (Exception e){
+	      e.printStackTrace();
+		}
+	return servers;
+	}
 	
 }
