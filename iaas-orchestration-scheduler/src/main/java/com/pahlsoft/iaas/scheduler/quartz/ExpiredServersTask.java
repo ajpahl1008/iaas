@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.pahlsoft.iaas.jms.Publisher;
 import com.pahlsoft.iaas.scheduler.dao.ServerDao;
-import com.pahlsoft.iaas.scheduler.messaging.Publisher;
 
 @Component("task")
 public class ExpiredServersTask {
