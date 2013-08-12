@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.pahlsoft.iaas.jms.Publisher;
 import com.pahlsoft.ws.iaas.dao.UserDao;
 import com.pahlsoft.ws.iaas.generated.User;
 
@@ -59,6 +60,7 @@ public class UserDaoImpl implements UserDao {
 		
 			String user_sql = "INSERT INTO iaas.users VALUES (default,?,?,?,?,null,null)";
 			daoLog.info("Added User: " + user.getLoginId());
+			Publisher.publish("eventQueue", "User: " + user.getLoginId() + " added");
 			return getJdbcTemplate().update(user_sql, new Object[] {
 																	user.getFirstName(),
 																	user.getLastName(),
@@ -69,6 +71,7 @@ public class UserDaoImpl implements UserDao {
 	private int deleteUser(String userId) {
 			String user_sql = "DELETE FROM iaas.users where login=?";
 			daoLog.info("Deleted User: " + userId);
+			Publisher.publish("eventQueue", "User: " + userId + " deleted");
 			return getJdbcTemplate().update(user_sql, new Object[] {userId});
 			
 	}

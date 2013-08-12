@@ -191,5 +191,10 @@
 			<version>3.0</version>
 			<type>maven-plugin</type>
 		</dependency>
+		<dependency>
+			<groupId>iaas-common</groupId>
+			<artifactId>iaas-common-lib</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

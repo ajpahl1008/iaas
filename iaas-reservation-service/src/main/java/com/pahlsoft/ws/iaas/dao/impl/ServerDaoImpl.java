@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.pahlsoft.iaas.jms.Publisher;
 import com.pahlsoft.ws.iaas.dao.ServerDao;
 import com.pahlsoft.ws.iaas.generated.Category;
 import com.pahlsoft.ws.iaas.generated.OperatingSystemEnum;
@@ -207,6 +208,7 @@ public class ServerDaoImpl implements ServerDao {
 	private int insertServer(Server serverInfo) {
 		String server_sql = "INSERT INTO iaas.servers VALUES (default, ?, '', '', 0, ?, '', ?, ?, ?, ?, ?)";
 		daoLog.info("Added Server: " + serverInfo.getServerName());
+		Publisher.publish("eventQueue", "Server: " + serverInfo.getServerName() + " added");
 		return getJdbcTemplate().update(server_sql, new Object[] {serverInfo.getServerName(),
 																  getCategoryId(serverInfo.getServerCategory()),
 				                                                  getStatusId(serverInfo.getServerStatus()),
@@ -219,6 +221,7 @@ public class ServerDaoImpl implements ServerDao {
 	private int updateServer(Server serverInfo) {
 		String server_sql = "UPDATE iaas.servers set start_date=?,expiration_date=?,user_id=?,category_id=?,status_id=?,parent_id=?,ip_address=?,dns_name=?,os_id=? where server_name=?";
 		daoLog.info("Updated Server: " + serverInfo.getServerName());
+		Publisher.publish("eventQueue", "Server: " + serverInfo.getServerName() + " updated");
 		return getJdbcTemplate().update(server_sql, new Object[] {
 				                                                  serverInfo.getStartDate(),
 				                                                  serverInfo.getExpirationDate(),
@@ -243,6 +246,7 @@ public class ServerDaoImpl implements ServerDao {
 		cal.add(Calendar.DATE, 90); // add 90 days to today's date
 		date = cal.getTime();
 		String expirationDate = sdf.format(date);
+		Publisher.publish("eventQueue", "Server: " + serverInfo.getServerName() + " reserved by " + userId);
 		return getJdbcTemplate().update(server_sql, new Object[] {
 				                                                  startDate,
 				                                                  expirationDate,
@@ -263,6 +267,7 @@ public class ServerDaoImpl implements ServerDao {
 	private int insertUser(Server serverInfo) {
 		String user_sql = "INSERT INTO iaas.users VALUES (default,?,?,?,?,null,null)";
 		daoLog.info("Added User: " + serverInfo.getServerUser().getLoginId());
+		Publisher.publish("eventQueue", "User: " + serverInfo.getServerUser().getUserId() + " added");
 		return getJdbcTemplate().update(user_sql, new Object[] {serverInfo.getServerUser().getFirstName(),
 																serverInfo.getServerUser().getLastName(),
 																serverInfo.getServerUser().getPhoneNumber(),
@@ -273,6 +278,7 @@ public class ServerDaoImpl implements ServerDao {
 		String sql = "DELETE FROM iaas.servers where server_name=?";
 		try {
 			daoLog.info("Deleting Server: " + serverName);
+			Publisher.publish("eventQueue", "Server: " + serverName + " deleted");
 			return getJdbcTemplate().update(sql,new Object[] {serverName});
 		} catch (Exception e) {
 			daoLog.info("Unable to find server " + serverName + " to delete");
@@ -293,6 +299,7 @@ public class ServerDaoImpl implements ServerDao {
 	private int expireServer(String serverName) {
 		String server_sql = "UPDATE iaas.servers set start_date='',expiration_date='',user_id='0' where server_name=?";
 		daoLog.info("Expired Server: " + serverName);
+		Publisher.publish("eventQueue", "Server: " + serverName + " unreserved");
 		return getJdbcTemplate().update(server_sql, new Object[] {serverName});
 	}
 
@@ -373,6 +380,7 @@ public class ServerDaoImpl implements ServerDao {
 		String sql = "DELETE FROM iaas.parents where parent_name=?";
 		try {
 			daoLog.info("Deleting Parent: " + parentName);
+			Publisher.publish("eventQueue", "Parent: " + parentName + " added");
 			return getJdbcTemplate().update(sql,new Object[] {parentName});
 		} catch (Exception e) {
 			daoLog.info("Unable to find parent " + parentName + " to delete");

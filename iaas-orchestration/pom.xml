@@ -81,7 +81,7 @@
             <dependency>
             	<groupId>com.pahlsoft.iaas</groupId>
             	<artifactId>iaas-common-lib</artifactId>
-            	<version>0.0.1-SNAPSHOT</version>
+            	<version>0.0.3-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -113,6 +113,19 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
+                <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>7.4.Final</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             </plugins>
         </pluginManagement>
     </build>

@@ -1,4 +1,4 @@
-package com.pahlsoft.iaas.scheduler.messaging;
+package com.pahlsoft.iaas.jms;
 
 import java.util.UUID;
 

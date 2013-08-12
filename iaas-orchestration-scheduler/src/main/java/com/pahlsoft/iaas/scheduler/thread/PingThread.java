@@ -9,7 +9,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pahlsoft.iaas.scheduler.messaging.Publisher;
+import com.pahlsoft.iaas.jms.Publisher;
+
 
 public class PingThread implements Runnable {
 	
