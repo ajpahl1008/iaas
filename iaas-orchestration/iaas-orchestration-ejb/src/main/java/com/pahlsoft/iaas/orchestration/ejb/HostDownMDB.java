@@ -1,8 +1,6 @@
 package com.pahlsoft.iaas.orchestration.ejb;
 
-import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.jms.JMSException;
@@ -40,7 +38,7 @@ public class HostDownMDB implements MessageListener {
  		} catch (JMSException e) {
  			e.printStackTrace();
  		}
-          System.out.println("Processing Host Down Event ID: " + iaasError.getCorrelationId());
+          System.out.println("Processing Host Down Error ID: " + iaasError.getCorrelationId());
          ErrorMessageExecutor eme = new ErrorMessageExecutor();
          eme.sendMessage(iaasError);
 
