@@ -30,6 +30,12 @@ public class Server  implements java.io.Serializable {
 
     private com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum operatingSystem;
 
+    private java.lang.String cpuQuantity;
+
+    private java.lang.String cpuSpeed;
+
+    private java.lang.String memoryQuantity;
+
     public Server() {
     }
 
@@ -44,7 +50,10 @@ public class Server  implements java.io.Serializable {
            java.lang.String parentName,
            java.lang.String ipAddress,
            java.lang.String dnsName,
-           com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum operatingSystem) {
+           com.pahlsoft.iaas.ws.reservation.OperatingSystemEnum operatingSystem,
+           java.lang.String cpuQuantity,
+           java.lang.String cpuSpeed,
+           java.lang.String memoryQuantity) {
            this.serverId = serverId;
            this.serverName = serverName;
            this.serverCategory = serverCategory;
@@ -56,6 +65,9 @@ public class Server  implements java.io.Serializable {
            this.ipAddress = ipAddress;
            this.dnsName = dnsName;
            this.operatingSystem = operatingSystem;
+           this.cpuQuantity = cpuQuantity;
+           this.cpuSpeed = cpuSpeed;
+           this.memoryQuantity = memoryQuantity;
     }
 
 
@@ -278,6 +290,66 @@ public class Server  implements java.io.Serializable {
         this.operatingSystem = operatingSystem;
     }
 
+
+    /**
+     * Gets the cpuQuantity value for this Server.
+     * 
+     * @return cpuQuantity
+     */
+    public java.lang.String getCpuQuantity() {
+        return cpuQuantity;
+    }
+
+
+    /**
+     * Sets the cpuQuantity value for this Server.
+     * 
+     * @param cpuQuantity
+     */
+    public void setCpuQuantity(java.lang.String cpuQuantity) {
+        this.cpuQuantity = cpuQuantity;
+    }
+
+
+    /**
+     * Gets the cpuSpeed value for this Server.
+     * 
+     * @return cpuSpeed
+     */
+    public java.lang.String getCpuSpeed() {
+        return cpuSpeed;
+    }
+
+
+    /**
+     * Sets the cpuSpeed value for this Server.
+     * 
+     * @param cpuSpeed
+     */
+    public void setCpuSpeed(java.lang.String cpuSpeed) {
+        this.cpuSpeed = cpuSpeed;
+    }
+
+
+    /**
+     * Gets the memoryQuantity value for this Server.
+     * 
+     * @return memoryQuantity
+     */
+    public java.lang.String getMemoryQuantity() {
+        return memoryQuantity;
+    }
+
+
+    /**
+     * Sets the memoryQuantity value for this Server.
+     * 
+     * @param memoryQuantity
+     */
+    public void setMemoryQuantity(java.lang.String memoryQuantity) {
+        this.memoryQuantity = memoryQuantity;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof Server)) return false;
@@ -320,7 +392,16 @@ public class Server  implements java.io.Serializable {
               this.dnsName.equals(other.getDnsName()))) &&
             ((this.operatingSystem==null && other.getOperatingSystem()==null) || 
              (this.operatingSystem!=null &&
-              this.operatingSystem.equals(other.getOperatingSystem())));
+              this.operatingSystem.equals(other.getOperatingSystem()))) &&
+            ((this.cpuQuantity==null && other.getCpuQuantity()==null) || 
+             (this.cpuQuantity!=null &&
+              this.cpuQuantity.equals(other.getCpuQuantity()))) &&
+            ((this.cpuSpeed==null && other.getCpuSpeed()==null) || 
+             (this.cpuSpeed!=null &&
+              this.cpuSpeed.equals(other.getCpuSpeed()))) &&
+            ((this.memoryQuantity==null && other.getMemoryQuantity()==null) || 
+             (this.memoryQuantity!=null &&
+              this.memoryQuantity.equals(other.getMemoryQuantity())));
         __equalsCalc = null;
         return _equals;
     }
@@ -362,6 +443,15 @@ public class Server  implements java.io.Serializable {
         }
         if (getOperatingSystem() != null) {
             _hashCode += getOperatingSystem().hashCode();
+        }
+        if (getCpuQuantity() != null) {
+            _hashCode += getCpuQuantity().hashCode();
+        }
+        if (getCpuSpeed() != null) {
+            _hashCode += getCpuSpeed().hashCode();
+        }
+        if (getMemoryQuantity() != null) {
+            _hashCode += getMemoryQuantity().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -437,6 +527,24 @@ public class Server  implements java.io.Serializable {
         elemField.setFieldName("operatingSystem");
         elemField.setXmlName(new javax.xml.namespace.QName("", "operatingSystem"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://iaas.ws.pahlsoft.com", "operatingSystemEnum"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("cpuQuantity");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "cpuQuantity"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("cpuSpeed");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "cpuSpeed"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("memoryQuantity");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "memoryQuantity"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }

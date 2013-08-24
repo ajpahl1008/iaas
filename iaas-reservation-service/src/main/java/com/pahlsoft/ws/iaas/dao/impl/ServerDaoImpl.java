@@ -52,6 +52,9 @@ public class ServerDaoImpl implements ServerDao {
 			server.setDnsName((String)row.get("dns_name"));
 			server.setIpAddress((String)row.get("ip_address"));
 			server.setParentName((String)row.get("parent_name"));
+			server.setCpuQuantity((String)row.get("cpu_qty"));
+			server.setCpuSpeed((String)row.get("cpu_speed"));
+			server.setMemoryQuantity((String)row.get("memory"));
 			userInfo.setFirstName((String)row.get("first_name"));
 			userInfo.setLastName((String)row.get("last_name"));
 			userInfo.setPhoneNumber((String)row.get("phone_number"));
@@ -85,6 +88,9 @@ public class ServerDaoImpl implements ServerDao {
 			server.setDnsName((String)row.get("dns_name"));
 			server.setIpAddress((String)row.get("ip_address"));
 			server.setParentName((String)row.get("parent_name"));
+			server.setCpuQuantity((String)row.get("cpu_qty"));
+			server.setCpuSpeed((String)row.get("cpu_speed"));
+			server.setMemoryQuantity((String)row.get("memory"));
 			userInfo.setFirstName((String)row.get("first_name"));
 			userInfo.setLastName((String)row.get("last_name"));
 			userInfo.setPhoneNumber((String)row.get("phone_number"));
@@ -116,6 +122,9 @@ public class ServerDaoImpl implements ServerDao {
 			server.setServerCategory(Category.fromValue((String)row.get("category")));
 			parent.setParentName((String)row.get("parent_name"));
 			server.setParentName((String)row.get("parent_name"));
+			server.setCpuQuantity((String)row.get("cpu_qty"));
+			server.setCpuSpeed((String)row.get("cpu_speed"));
+			server.setMemoryQuantity((String)row.get("memory"));
 			userInfo.setFirstName((String)row.get("first_name"));
 			userInfo.setLastName((String)row.get("last_name"));
 			userInfo.setPhoneNumber((String)row.get("phone_number"));
@@ -146,6 +155,9 @@ public class ServerDaoImpl implements ServerDao {
 			server.setStartDate((String)row.get("start_date"));
 			server.setExpirationDate((String)row.get("expiration_date"));
 			server.setServerCategory(Category.fromValue((String)row.get("category")));
+			server.setCpuQuantity((String)row.get("cpu_qty"));
+			server.setCpuSpeed((String)row.get("cpu_speed"));
+			server.setMemoryQuantity((String)row.get("memory"));
 			parent.setParentName((String)row.get("parent_name"));
 			server.setParentName((String)row.get("parent_name"));
 			userInfo.setFirstName((String)row.get("first_name"));
@@ -178,6 +190,9 @@ public class ServerDaoImpl implements ServerDao {
 			server.setStartDate((String)row.get("start_date"));
 			server.setExpirationDate((String)row.get("expiration_date"));
 			server.setServerCategory(Category.fromValue((String)row.get("category")));
+			server.setCpuQuantity((String)row.get("cpu_qty"));
+			server.setCpuSpeed((String)row.get("cpu_speed"));
+			server.setMemoryQuantity((String)row.get("memory"));
 			parent.setParentName((String)row.get("parent_name"));
 			server.setParentName((String)row.get("parent_name"));
 			userInfo.setFirstName((String)row.get("first_name"));
@@ -206,7 +221,7 @@ public class ServerDaoImpl implements ServerDao {
 	}
 	
 	private int insertServer(Server serverInfo) {
-		String server_sql = "INSERT INTO iaas.servers VALUES (default, ?, '', '', 0, ?, '', ?, ?, ?, ?, ?)";
+		String server_sql = "INSERT INTO iaas.servers VALUES (default, ?, '', '', 0, ?, '', ?, ?, ?, ?, ?, ? ,? ,?)";
 		daoLog.info("Added Server: " + serverInfo.getServerName());
 		Publisher.publish("eventQueue", "Server: " + serverInfo.getServerName() + " added");
 		return getJdbcTemplate().update(server_sql, new Object[] {serverInfo.getServerName(),
@@ -215,11 +230,14 @@ public class ServerDaoImpl implements ServerDao {
 				                                                  getParentId(serverInfo.getParentName()),
 				                                                  serverInfo.getIpAddress(),
 				                                                  serverInfo.getDnsName(),
-				                                                  getOperatingSystemId(serverInfo.getOperatingSystem().value())});
+				                                                  getOperatingSystemId(serverInfo.getOperatingSystem().value()),
+				                                                  serverInfo.getCpuQuantity(),
+				                                                  serverInfo.getCpuSpeed(),
+				                                                  serverInfo.getMemoryQuantity()});
 	}
 	
 	private int updateServer(Server serverInfo) {
-		String server_sql = "UPDATE iaas.servers set start_date=?,expiration_date=?,user_id=?,category_id=?,status_id=?,parent_id=?,ip_address=?,dns_name=?,os_id=? where server_name=?";
+		String server_sql = "UPDATE iaas.servers set start_date=?,expiration_date=?,user_id=?,category_id=?,status_id=?,parent_id=?,ip_address=?,dns_name=?,os_id=?,cpu_qty=?,cpu_speed=?,memory=? where server_name=?";
 		daoLog.info("Updated Server: " + serverInfo.getServerName());
 		Publisher.publish("eventQueue", "Server: " + serverInfo.getServerName() + " updated");
 		return getJdbcTemplate().update(server_sql, new Object[] {
@@ -232,6 +250,9 @@ public class ServerDaoImpl implements ServerDao {
 				                                                  serverInfo.getIpAddress(),
 				                                                  serverInfo.getDnsName(),
 				                                                  getOperatingSystemId(serverInfo.getOperatingSystem().value()),
+				                                                  serverInfo.getCpuQuantity(),
+				                                                  serverInfo.getCpuSpeed(),
+				                                                  serverInfo.getMemoryQuantity(),
 																  serverInfo.getServerName()});
 	}
 	

@@ -41,6 +41,9 @@ public class ReservationServiceImpl extends RemoteServiceServlet implements	Rese
 		_asyncServer.setParentName((server.getParentName()));
 		_asyncServer.setIpAddress(server.getIpAddress());
 		_asyncServer.setDnsName(server.getDnsName());
+		_asyncServer.setCpuQuantity(server.getCpuQuantity());
+		_asyncServer.setCpuSpeed(server.getCpuSpeed());
+		_asyncServer.setMemoryQuantity(server.getMemoryQuantity());
 		return _asyncServer;
 	}
 	
@@ -94,6 +97,9 @@ public class ReservationServiceImpl extends RemoteServiceServlet implements	Rese
 		_server.setDnsName(asyncServer.getDnsName());
 		_server.setIpAddress(asyncServer.getIpAddress());
 		_server.setOperatingSystem(OperatingSystemEnum.fromString(asyncServer.getOperatingSystem()));
+		_server.setCpuQuantity(asyncServer.getCpuQuantity());
+		_server.setCpuSpeed(asyncServer.getCpuSpeed());
+		_server.setMemoryQuantity(asyncServer.getMemoryQuantity());
 		return _server;
 	}
 	
@@ -109,6 +115,9 @@ public class ReservationServiceImpl extends RemoteServiceServlet implements	Rese
 		_server.setDnsName(asyncServer.getDnsName());
 		_server.setIpAddress(asyncServer.getIpAddress());
 		_server.setOperatingSystem(OperatingSystemEnum.fromString(asyncServer.getOperatingSystem()));
+		_server.setCpuQuantity(asyncServer.getCpuQuantity());
+		_server.setCpuSpeed(asyncServer.getCpuSpeed());
+		_server.setMemoryQuantity(asyncServer.getMemoryQuantity());
 		User _user = new User();
 		_user.setFirstName("");
 		_user.setLastName("");

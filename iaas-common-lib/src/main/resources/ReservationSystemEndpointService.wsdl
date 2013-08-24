@@ -29,6 +29,9 @@
       <xs:element name="ipAddress" type="xs:string"/>
       <xs:element name="dnsName" type="xs:string"/>
       <xs:element name="operatingSystem" type="tns:operatingSystemEnum"/>
+      <xs:element name="cpuQuantity" type="xs:string"/>
+      <xs:element name="cpuSpeed" type="xs:string"/>
+      <xs:element name="memoryQuantity" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="user">

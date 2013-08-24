@@ -26,6 +26,9 @@ public class ServerOverviewRowMapper implements RowMapper<Server>{
 			server.setStartDate(rs.getString("start_date"));
 			server.setStartDate(rs.getString("expiration_date"));
 			server.setServerCategory(Category.fromValue(rs.getString("category")));
+			server.setCpuQuantity(rs.getString("cpu_qty"));
+			server.setCpuSpeed(rs.getString("cpu_speed"));
+			server.setMemoryQuantity(rs.getString("memory"));
 			userInfo.setFirstName(rs.getString("first_name"));
 			userInfo.setLastName(rs.getString("last_name"));
 			userInfo.setPhoneNumber(rs.getString("phone_number"));

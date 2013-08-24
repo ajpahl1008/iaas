@@ -62,16 +62,11 @@
     <version>3.0</version>
     <type>maven-plugin</type>
     </dependency>
-    <dependency>
-    	<groupId>com.extjs</groupId>
-    	<artifactId>gxt</artifactId>
-    	<version>2.3.0-gwt22</version>
-    </dependency>
 
     <dependency>
     	<groupId>iaas-common</groupId>
     	<artifactId>iaas-common-lib</artifactId>
-    	<version>0.0.2-SNAPSHOT</version>
+    	<version>0.0.4-SNAPSHOT</version>
     </dependency>
     <dependency>
     	<groupId>com.google.gwt</groupId>
@@ -87,6 +82,11 @@
     	<groupId>com.google.web.bindery</groupId>
     	<artifactId>requestfactory-server</artifactId>
     	<version>2.5.0</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.extjs</groupId>
+    	<artifactId>gxt</artifactId>
+    	<version>2.3.0-gwt22</version>
     </dependency>
   </dependencies>
 
@@ -126,7 +126,7 @@
           <runTarget>Iaas_reservation_ui.html</runTarget>
           <hostedWebapp>${webappDirectory}</hostedWebapp>
           <i18nMessagesBundle>com.jeeni.client.Messages</i18nMessagesBundle>
-    	  <extraJvmArgs>-Xmx512M -Xss1024k -Diaas.reservation.service.url=http://localhost:8080/iaas-reservation-service/server -Diaas.messaging.service.url=http://localhost:8080/iaas-messaging-service/messaging</extraJvmArgs>
+    	  <extraJvmArgs>-Xmx512M -Xss1024k -Diaas.reservation.service.url=http://localhost:8080/iaas-reservation-service-0.0.1-SNAPSHOT/server -Diaas.messaging.service.url=http://localhost:8080/iaas-messaging-service-0.0.1-SNAPSHOT/messaging</extraJvmArgs>
         </configuration>
         
         <dependencies>

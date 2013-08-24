@@ -32,11 +32,11 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 
 public class AddServerPopUp extends Window  {
-	
+
 	SimpleEventBus eventBus = new SimpleEventBus();
 
 	public AddServerPopUp(SimpleEventBus eventBus) {
-		this.eventBus = eventBus;
+	     	this.eventBus = eventBus;
 	}
 
 	@Override  
@@ -52,11 +52,11 @@ public class AddServerPopUp extends Window  {
 	    setHeadingText("Add New Server");
 	    setClosable(true);
 	    setOnEsc(true);
-	    setSize("465", "345");
+	    setSize("465", "395");
 	       
 	    setLayout(new AbsoluteLayout());
 	    
-	    	    setFocusWidget(getButtonBar().getItem(0));
+	    setFocusWidget(getButtonBar().getItem(0));
 	    
 	    final TextField<String> txtServerName = new TextField<String>();
 	    add(txtServerName, new AbsoluteData(139, 11));
@@ -96,10 +96,8 @@ public class AddServerPopUp extends Window  {
 	    scbCategory.setAllowBlank(false);
 	    add(scbCategory, new AbsoluteData(139, 101));
 	    
-	    
 	    LabelField lblfldCategory = new LabelField("Category");
 	    add(lblfldCategory, new AbsoluteData(81, 101));
- 
 	    
 	    ListStore<AsyncParent> parents = null;
 	    if (Beans.isDesignTime()) {
@@ -107,7 +105,6 @@ public class AddServerPopUp extends Window  {
 	    } else {
 	    	ReservationServiceAsync reservationService = GWT.create(ReservationService.class);
 	    	parents = getAsyncParents(reservationService);
-	    	
 	    }
 	    
 	    final ComboBox<AsyncParent> scbParent = new ComboBox<AsyncParent>();
@@ -139,17 +136,39 @@ public class AddServerPopUp extends Window  {
 	    LabelField lblfldServerIp = new LabelField("Server IP");
 	    add(lblfldServerIp, new AbsoluteData(80, 191));
 	    txtServerName.setFieldLabel("Server IP");
+
+	    final TextField<String> txtCpuQuantity = new TextField<String>();
+	    add(txtCpuQuantity, new AbsoluteData(139, 226));
+	    txtCpuQuantity.setSize("150px", "24px");
 	    
+	    LabelField lblFldCpuQty = new LabelField("CPU Quantity");
+	    add(lblFldCpuQty, new AbsoluteData(58, 226));
+	    txtCpuQuantity.setFieldLabel("CPU Quantity");
+	    
+	    final TextField<String> txtCpuSpeed = new TextField<String>();
+	    add(txtCpuSpeed, new AbsoluteData(139, 261));
+	    txtCpuSpeed.setSize("150px", "24px");
+	    
+	    LabelField lblFldCpuSpeed = new LabelField("CPU Speed (MHz)");
+	    add(lblFldCpuSpeed, new AbsoluteData(38, 261));
+	    txtCpuSpeed.setFieldLabel("CPU Speed");
+	    
+	    final TextField<String> txtMemoryQuantity = new TextField<String>();
+	    add(txtMemoryQuantity, new AbsoluteData(139, 296));
+	    txtMemoryQuantity.setSize("150px", "24px");
+	    
+	    LabelField lblFldMemoryQuantity = new LabelField("Memory Quantity (MB)");
+	    add(lblFldMemoryQuantity, new AbsoluteData(10, 296));
+	    txtMemoryQuantity.setFieldLabel("Memory Quantity (MB)");
 	    
 	    Button btnCancel = new Button("Cancel", new SelectionListener<ButtonEvent>() {  
 		      @Override  
 		      public void componentSelected(ButtonEvent ce) {  
-		    
 		    	AddServerPopUp.this.hide();  
 		      }  
 		    });
 
-		    add(btnCancel, new AbsoluteData(324, 248));
+		    add(btnCancel, new AbsoluteData(324, 298));
 		    btnCancel.setSize("45px", "22px");
 		    
 		 Button btnAddServer = new Button("Add", new SelectionListener<ButtonEvent>() {  
@@ -164,15 +183,6 @@ public class AddServerPopUp extends Window  {
 			    	} else if (!scbParent.isValid()) {
 			    		Info.display("Invalid Entry","No Parent Server Selected");	
 			    	} else {
-			    		System.out.println("DEBUG: Adding Server Name: " + txtServerName.getValue());
-			    		System.out.println("DEBUG: Adding Server IP: " + txtServerIp.getValue());
-			    		System.out.println("DEBUG: Adding Server DNS: " + txtServerDns.getValue());
-			    		System.out.println("DEBUG: Adding Server Operating System Category:  " + scbCategory.getValue().getValue().toString());
-			    		System.out.println("DEBUG: Parent Info: IP " + scbParent.getValue().getIpAddress());
-			    		System.out.println("DEBUG: Parent Info: DNS " + scbParent.getValue().getDnsName());
-			    		System.out.println("DEBUG: Parent Info: Name " + scbParent.getValue().getParentName());
-			    		System.out.println("DEBUG: Parent Info: ID " + scbParent.getValue().getParentId());
-			    		
 			    		if (Beans.isDesignTime()) {
 			    		    // Do nothing
 			    		} else {
@@ -182,24 +192,25 @@ public class AddServerPopUp extends Window  {
 			    		    	newServer.setOwner(null);
 			    		    	newServer.setServerId(null);
 			    		    	newServer.setCategory(scbCategory.getValue().getValue().toString());
-			    		    	newServer.setParentName("orphan");  
 			    		    	newServer.setName(txtServerName.getValue());
 			    		    	newServer.setStatus(scbStatus.getValue().getValue().toString());
 			    		    	newServer.setParentName(scbParent.getValue().getParentName());
-			    		    	newServer.setIpAddress(txtServerIp.getValue());
+			    		    	newServer.setIpAddress(txtCpuQuantity.getValue());
 			    		    	newServer.setDnsName(txtServerDns.getValue());
 			    		    	newServer.setOperatingSystem(scbOperatingSystem.getValue().getValue().toString());
-			    		    	
+			    		        newServer.setCpuQuantity(txtCpuQuantity.getValue());
+			    		        newServer.setCpuSpeed(txtCpuSpeed.getValue());
+			    		        newServer.setMemoryQuantity(txtMemoryQuantity.getValue());
+
 			    		    	ReservationServiceAsync reservationService = GWT.create(ReservationService.class);
 			    		    	addServer(reservationService, newServer);
-
 			    		}
 			    		AddServerPopUp.this.hide();  
 			    	}
 			      }  
 			    });
 		    
-		   add(btnAddServer, new AbsoluteData(375, 248));
+		   add(btnAddServer, new AbsoluteData(375, 298));
 		   btnAddServer.setSize("53px", "22px");
 		    addWindowListener(new WindowListener() {  
 		        @Override  

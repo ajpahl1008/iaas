@@ -16,6 +16,9 @@
 			<xs:element minOccurs="1" name="ipAddress" type="xs:string" />
 			<xs:element minOccurs="1" name="dnsName" type="xs:string" />
 			<xs:element minOccurs="1" name="operatingSystem" type="tns:operatingSystemEnum" />
+			<xs:element minOccurs="1" name="cpuQuantity" type="xs:string" />
+			<xs:element minOccurs="1" name="cpuSpeed" type="xs:string" />
+			<xs:element minOccurs="1" name="memoryQuantity" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 	

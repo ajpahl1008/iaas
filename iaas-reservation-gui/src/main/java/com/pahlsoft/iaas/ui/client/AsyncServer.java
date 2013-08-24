@@ -53,6 +53,18 @@ public class AsyncServer extends BaseModel {
 		return get("status");
 	}
 	
+	public String getCpuQuantity() {
+		return get("cpuQuantity");
+	}
+	
+	public String getCpuSpeed() {
+		return get("cpuSpeed");
+	}
+	
+	public String getMemoryQuantity() {
+		return get("memoryQuantity");
+	}
+	
 	public void setCategory(String category) {
 		set("category",category);
 	}
@@ -96,5 +108,18 @@ public class AsyncServer extends BaseModel {
 	public void setDnsName(String dnsName) {
 		set("dnsName", dnsName);
 	}
+
+	public void setCpuQuantity(String cpuQuantity) {
+		set("cpuQuantity",cpuQuantity);
+	}
+	
+	public void setCpuSpeed(String cpuSpeed) {
+		set("cpuSpeed",cpuSpeed);
+	}
+	
+	public void setMemoryQuantity(String memoryQuantity) {
+	    set("memoryQuantity",memoryQuantity);
+	}
+	
 	
 }
