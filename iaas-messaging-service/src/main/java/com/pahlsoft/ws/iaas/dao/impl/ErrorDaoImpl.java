@@ -69,8 +69,7 @@ public class ErrorDaoImpl implements ErrorDao {
 		cal.add(Calendar.DATE, -7); 
 		date = cal.getTime();
 		String lastweek = sdf.format(date);
-		lastweek=lastweek+"000000";  // Added Hours Minutes Seconds
-		String error_sql_today = "select * from iaas.errors where error_date >= " + lastweek + " and error_date < " + today; 
+		String error_sql_today = "select * from iaas.errors where error_date >= " + lastweek + " and error_date < " + today;
 		return getJdbcTemplate().query(error_sql_today, new ErrorRowMapper());
 	}
 
@@ -86,7 +85,6 @@ public class ErrorDaoImpl implements ErrorDao {
 		cal.add(Calendar.MONTH, -1); 
 		date = cal.getTime();
 		String lastmonth = sdf.format(date);
-		lastmonth=lastmonth+"000000";  // Added Hours Minutes Seconds
 		String error_sql_today = "select * from iaas.errors where error_date >= " + lastmonth + " and error_date < " + today; 
 		return getJdbcTemplate().query(error_sql_today, new ErrorRowMapper());
 	}

@@ -23,12 +23,12 @@ private JdbcTemplate jdbcTemplate;
 Logger daoLog = LoggerFactory.getLogger(ServerDaoImpl.class);
 
 public List<String> getExpiredServers() {
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Date date = new Date();
 	String todaysDate = sdf.format(date); 
 	daoLog.debug("Searching for Expired Servers");
 	
-	String sql = "select server_name from iaas.servers where user_id>0 and expiration_date < '" +  todaysDate + "'";
+	String sql = "select server_name from iaas.servers where user_id>0 and expiration_date < STR_TO_DATE('" +  todaysDate + "', '%Y-%m-%d')";
 	List<String> servers = new ArrayList<String>();
 	 
 	List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql);

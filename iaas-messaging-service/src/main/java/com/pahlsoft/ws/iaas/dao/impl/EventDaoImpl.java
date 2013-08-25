@@ -68,7 +68,6 @@ public class EventDaoImpl implements EventDao {
 		cal.add(Calendar.DATE, -7); // subtract to get yesterday
 		date = cal.getTime();
 		String lastweek = sdf.format(date);
-		lastweek=lastweek+"000000";  // Added Hours Minutes Seconds
 		String event_sql_today = "select * from iaas.events where event_date >= " + lastweek + " and event_date < " + today; 
 		return getJdbcTemplate().query(event_sql_today, new EventRowMapper());
 	}
@@ -85,7 +84,6 @@ public class EventDaoImpl implements EventDao {
 		cal.add(Calendar.MONTH, -1); // subtract to get yesterday
 		date = cal.getTime();
 		String lastmonth = sdf.format(date);
-		lastmonth=lastmonth+"000000";  // Added Hours Minutes Seconds
 		String event_sql_today = "select * from iaas.events where event_date >= " + lastmonth + " and event_date < " + today; 
 		return getJdbcTemplate().query(event_sql_today, new EventRowMapper());
 	}
