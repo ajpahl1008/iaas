@@ -110,6 +110,9 @@ CREATE  TABLE IF NOT EXISTS `iaas`.`servers` (
   `category_id` INT(11) NULL DEFAULT NULL ,
   `software` VARCHAR(255) NULL DEFAULT NULL ,
   `status_id` INT(11) NULL DEFAULT NULL ,
+  `cpu_qty` VARCHAR(45) NULL DEFAULT NULL ,
+  `cpu_speed` VARCHAR(45) NULL DEFAULT NULL ,
+  `memory` VARCHAR(45) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `id` (`user_id` ASC) ,
   INDEX `user_fk` (`user_id` ASC) ,
@@ -211,7 +214,8 @@ CREATE TABLE IF NOT EXISTS `iaas`.`storage_j02` (`server_name` INT, `storage_ent
 DROP VIEW IF EXISTS `iaas`.`overview_j04` ;
 DROP TABLE IF EXISTS `iaas`.`overview_j04`;
 USE `iaas`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `iaas`.`overview_j04` AS select `iaas`.`servers`.`id` AS `id`,`iaas`.`servers`.`server_name` AS `server_name`,`iaas`.`servers`.`start_date` AS `start_date`,`iaas`.`servers`.`expiration_date` AS `expiration_date`,`iaas`.`status`.`status` AS `status`,`iaas`.`categories`.`category` AS `category`,`iaas`.`users`.`first_name` AS `first_name`,`iaas`.`users`.`last_name` AS `last_name`,`iaas`.`users`.`phone_number` AS `phone_number`,`iaas`.`users`.`login` AS `login`,`iaas`.`server_parent_map`.`parent_name` AS `parent_name` from ((((`iaas`.`servers` join `iaas`.`users` on((`iaas`.`servers`.`user_id` = `iaas`.`users`.`id`))) join `iaas`.`categories` on((`iaas`.`servers`.`category_id` = `iaas`.`categories`.`id`))) join `iaas`.`status` on((`iaas`.`servers`.`status_id` = `iaas`.`status`.`id`))) join `iaas`.`server_parent_map` on((`iaas`.`servers`.`id` = `iaas`.`server_parent_map`.`child_id`)));
+CREATE or REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `iaas`.`overview_j04` AS select `iaas`.`servers`.`id` AS `id`,`iaas`.`servers`.`server_name` AS `server_name`,`iaas`.`servers`.`start_date` AS `start_date`,`iaas`.`servers`.`expiration_date` AS `expiration_date`,`iaas`.`servers`.`ip_address` AS `ip_address`,`iaas`.`servers`.`dns_name` AS `dns_name`,`iaas`.`servers`.`cpu_qty` AS `cpu_qty`,`iaas`.`servers`.`cpu_speed` AS `cpu_speed`,`iaas`.`servers`.`memory` AS `memory`,`iaas`.`status`.`status` AS `status`,`iaas`.`categories`.`category` AS `category`,`iaas`.`users`.`first_name` AS `first_name`,`iaas`.`users`.`last_name` AS `last_name`,`iaas`.`users`.`phone_number` AS `phone_number`,`iaas`.`users`.`login` AS `login`,`iaas`.`parents`.`parent_name` AS `parent_name`,`iaas`.`os`.`os_name` AS `os_name` from (((((`iaas`.`servers` join `iaas`.`users` on((`iaas`.`servers`.`user_id` = `iaas`.`users`.`id`))) join `iaas`.`categories` on((`iaas`.`servers`.`category_id` = `iaas`.`categories`.`id`))) join `iaas`.`status` on((`iaas`.`servers`.`status_id` = `iaas`.`status`.`id`))) join `iaas`.`parents` on((`iaas`.`servers`.`parent_id` = `iaas`.`parents`.`id`))) join `iaas`.`os` on((`iaas`.`servers`.`os_id` = `iaas`.`os`.`id`)));
+
 
 -- -----------------------------------------------------
 -- View `iaas`.`stats_j03`
