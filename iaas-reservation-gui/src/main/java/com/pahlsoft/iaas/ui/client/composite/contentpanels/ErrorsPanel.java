@@ -34,7 +34,7 @@ public class ErrorsPanel extends Composite  {
 	    column.setWidth(100);
 	    configs.add(column);
 
-	    column = new ColumnConfig("errorInfo","Error Info",330);
+	    column = new ColumnConfig("errorInfo","Error Info",375);
 	    column.setAlignment(HorizontalAlignment.LEFT);
 	    configs.add(column);
 	    

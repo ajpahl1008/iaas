@@ -107,7 +107,7 @@ public class Iaas_reservation_ui implements EntryPoint {
 		    		    
 		    		    FormPanel frmpnlEventsLastWeek = new FormPanel();
 		    		    frmpnlEventsLastWeek.setPadding(0);
-		    		    frmpnlEventsLastWeek.setHeadingText("This Week");
+		    		    frmpnlEventsLastWeek.setHeadingText("Last Week");
 		    		    frmpnlEventsLastWeek.setCollapsible(true);
 		    		    frmpnlEventsLastWeek.setLayout(new FillLayout());
 		    		    EventsPanel eventsLastWeekGrid = new EventsPanel(eventBus, Enums.ReportType.LASTWEEK, "LAST WEEK");
@@ -116,7 +116,7 @@ public class Iaas_reservation_ui implements EntryPoint {
 		    		    
 		    		    FormPanel frmpnlEventsLastMonth = new FormPanel();
 		    		    frmpnlEventsLastMonth.setPadding(0);
-		    		    frmpnlEventsLastMonth.setHeadingText("This Month");
+		    		    frmpnlEventsLastMonth.setHeadingText("Last Month");
 		    		    frmpnlEventsLastMonth.setCollapsible(true);
 		    		    frmpnlEventsLastMonth.setLayout(new FillLayout());
 		    		    EventsPanel eventsLastMonthGrid = new EventsPanel(eventBus, Enums.ReportType.LASTMONTH, "LAST MONTH");
@@ -171,11 +171,10 @@ public class Iaas_reservation_ui implements EntryPoint {
 		    		    viewPort.add(cntntpnlErrors, new AbsoluteData(629, 460));
 		    		    cntntpnlErrors.setPosition(499,458);
 		    		    
-//		    		    rootPanel.add(viewPort,100, 20);
 		    		    rootPanel.add(viewPort);
 		    		    
 		    		    rootPanel.setSize("1000", "831");
-		    DOM.removeChild(RootPanel.getBodyElement(),	 DOM.getElementById("loadingScreen"));
+		                DOM.removeChild(RootPanel.getBodyElement(),	 DOM.getElementById("loadingScreen"));
 			
 	}
 

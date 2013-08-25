@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.Composite;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -12,6 +13,8 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
+import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.google.gwt.core.client.GWT;
@@ -34,7 +37,7 @@ public class Servers extends Composite  {
 	    
 	    column.setId("name");
 	    column.setHeaderText("Server Names");
-	    column.setWidth(200);
+	    column.setWidth(100);
 	    configs.add(column);
 	    
 	    column = new ColumnConfig("status","Status",75);
@@ -49,21 +52,35 @@ public class Servers extends Composite  {
 	    column.setAlignment(HorizontalAlignment.LEFT);
 	    configs.add(column);
 	    
-	    column = new ColumnConfig("startDate","Start Date",100);
+	    column = new ColumnConfig("cpuQuantity","CPUs",40);
 	    column.setAlignment(HorizontalAlignment.LEFT);
 	    configs.add(column);
 	    
-	    column = new ColumnConfig("expirationDate","Expiration Date",100);
+	    column = new ColumnConfig("cpuSpeed","CPU Speed",80);
 	    column.setAlignment(HorizontalAlignment.LEFT);
 	    configs.add(column);
 	    
-	    column = new ColumnConfig("owner.lastname","Last Name",150);
+	    column = new ColumnConfig("memoryQuantity","Memory (MB)",80);
+	    column.setAlignment(HorizontalAlignment.LEFT);
+	    configs.add(column);
+
+	    column = new ColumnConfig("owner.lastname","LastName",80);
 	    column.setAlignment(HorizontalAlignment.LEFT);
 	    configs.add(column);
 	    
-	    column = new ColumnConfig("owner.loginid","Login ID",150);
+	    column = new ColumnConfig("owner.loginid","LoginID",80);
 	    column.setAlignment(HorizontalAlignment.LEFT);
 	    configs.add(column);
+	    
+	    column = new ColumnConfig("startDate","StartDate",75);
+	    column.setAlignment(HorizontalAlignment.LEFT);
+	    configs.add(column);
+	    
+	    column = new ColumnConfig("expirationDate","ExpirationDate",75);
+	    column.setAlignment(HorizontalAlignment.LEFT);
+	    configs.add(column);
+	    
+	    
 	    
 	    final ColumnModel cm = new ColumnModel(configs);
 	    
@@ -75,18 +92,33 @@ public class Servers extends Composite  {
 	    	grid = new Grid<AsyncServer>(new ListStore<AsyncServer>(),cm);
 	    } else {
 	    	ReservationServiceAsync reservationService = GWT.create(ReservationService.class);
+	        
+	        GroupingView groupView = new GroupingView();
+	        groupView.setShowGroupedColumn(false);
+	        groupView.setForceFit(true);
+	        groupView.setGroupRenderer(new GridGroupRenderer() {
+
+				@Override
+				public String render(GroupColumnData data) {
+					String f = cm.getColumnById(data.field).getHeaderHtml();  
+			        String l = data.models.size() == 1 ? "Item" : "Items";  
+			        return f + ": " + data.group + " (" + data.models.size() + " " + l + ")";  
+				}
+	        	
+	        });
 	    	grid = new Grid<AsyncServer>(getAsyncServers(reservationService),cm);
+	        grid.setView(groupView);
 	    	grid.setColumnLines(true);
 	    	grid.setStripeRows(true);
 	        grid.setHeight("420px");
 	        grid.setWidth("1000px");
-	    
-	    }
+	        grid.setLazyRowRender(0);
+	        
+	     }
 	    
 	    //Update the Grid because the data has changed.
 	    eventBus.addHandler(DataChangeEvent.TYPE, new DataChangeEventHandler() {
 			public void onEvent(DataChangeEvent event) {
-				System.out.println("Refreshing Server Grid");
 				grid.getStore().removeAll();
 				ReservationServiceAsync reservationService = GWT.create(ReservationService.class);
 				grid.reconfigure(getAsyncServers(reservationService), cm);
@@ -101,8 +133,8 @@ public class Servers extends Composite  {
 	    initComponent(cp);
 	}
 	
-	public ListStore<AsyncServer> getAsyncServers(ReservationServiceAsync reservationService) {
-		final ListStore<AsyncServer> _asyncServerList = new ListStore<AsyncServer>();
+	public GroupingStore<AsyncServer> getAsyncServers(ReservationServiceAsync reservationService) {
+		final GroupingStore<AsyncServer> _asyncServerGroupingStore = new GroupingStore<AsyncServer>();
 
 		reservationService.getServers(new AsyncCallback<List<AsyncServer>>() {
 			
@@ -112,12 +144,12 @@ public class Servers extends Composite  {
 			}
 			
 			public void onSuccess(List<AsyncServer> result) {
-				_asyncServerList.add(result);		
+				_asyncServerGroupingStore.add(result);		
 			}
 			
 		});
 		
-		return _asyncServerList;
+		return _asyncServerGroupingStore;
 	}
 	
 }

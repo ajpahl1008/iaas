@@ -34,7 +34,7 @@ public class EventsPanel extends Composite  {
 	    column.setWidth(100);
 	    configs.add(column);
 
-	    column = new ColumnConfig("eventInfo","Event Info",330);
+	    column = new ColumnConfig("eventInfo","Event Info",375);
 	    column.setAlignment(HorizontalAlignment.LEFT);
 	    configs.add(column);
 	    
