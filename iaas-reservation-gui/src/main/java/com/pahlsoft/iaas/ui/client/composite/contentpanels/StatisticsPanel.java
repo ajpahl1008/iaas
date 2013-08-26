@@ -18,9 +18,9 @@ import com.pahlsoft.iaas.ui.client.AsyncStatistics;
 import com.pahlsoft.iaas.ui.client.ReservationService;
 import com.pahlsoft.iaas.ui.client.ReservationServiceAsync;
 
-public class Statistics extends Composite {
+public class StatisticsPanel extends Composite {
 	
-	public Statistics() {
+	public StatisticsPanel() {
 	
 
 		ColumnConfig columnStatistics = new ColumnConfig();

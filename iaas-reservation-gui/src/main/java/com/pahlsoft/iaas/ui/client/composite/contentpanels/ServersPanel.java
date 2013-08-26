@@ -26,11 +26,11 @@ import com.pahlsoft.iaas.ui.client.ReservationServiceAsync;
 import com.pahlsoft.iaas.ui.client.events.DataChangeEvent;
 import com.pahlsoft.iaas.ui.client.events.DataChangeEventHandler;
 
-public class Servers extends Composite  {
+public class ServersPanel extends Composite  {
 	
 	Grid<AsyncServer> grid = null;
 	
-	public Servers(final SimpleEventBus eventBus) {
+	public ServersPanel(final SimpleEventBus eventBus) {
 		
 		ColumnConfig column = new ColumnConfig();
 	    final List<ColumnConfig> configs = new ArrayList<ColumnConfig>();

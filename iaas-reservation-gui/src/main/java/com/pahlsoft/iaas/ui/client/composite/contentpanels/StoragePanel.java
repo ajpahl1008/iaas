@@ -18,9 +18,9 @@ import com.pahlsoft.iaas.ui.client.AsyncStorage;
 import com.pahlsoft.iaas.ui.client.ReservationService;
 import com.pahlsoft.iaas.ui.client.ReservationServiceAsync;
 
-public class Storage extends Composite {
+public class StoragePanel extends Composite {
 
-	public Storage() {
+	public StoragePanel() {
 		
 	    ColumnConfig columnStorage = new ColumnConfig();
 	    List<ColumnConfig> configsStorage = new ArrayList<ColumnConfig>();

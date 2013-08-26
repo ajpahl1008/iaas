@@ -20,9 +20,9 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.pahlsoft.iaas.ui.client.composite.contentpanels.ErrorsPanel;
 import com.pahlsoft.iaas.ui.client.composite.contentpanels.EventsPanel;
-import com.pahlsoft.iaas.ui.client.composite.contentpanels.Servers;
-import com.pahlsoft.iaas.ui.client.composite.contentpanels.Statistics;
-import com.pahlsoft.iaas.ui.client.composite.contentpanels.Storage;
+import com.pahlsoft.iaas.ui.client.composite.contentpanels.ServersPanel;
+import com.pahlsoft.iaas.ui.client.composite.contentpanels.StatisticsPanel;
+import com.pahlsoft.iaas.ui.client.composite.contentpanels.StoragePanel;
 import com.pahlsoft.iaas.ui.client.composite.menubar.IaasMenu;
 
 public class Iaas_reservation_ui implements EntryPoint {
@@ -53,17 +53,17 @@ public class Iaas_reservation_ui implements EntryPoint {
 		    gxtTabPanel.setHeight(150);
 		    
 		    TabItem tbtmServers = new TabItem("Servers");
-		    Servers iaasServerTab = new Servers(eventBus);
+		    ServersPanel iaasServerTab = new ServersPanel(eventBus);
 		    tbtmServers.add(iaasServerTab);
 		    gxtTabPanel.add(tbtmServers);
 		    
 		    TabItem tbtmStorage = new TabItem("Storage");
-		    Storage iaasStorageTab = new Storage();
+		    StoragePanel iaasStorageTab = new StoragePanel();
 		    tbtmStorage.add(iaasStorageTab);
 		    gxtTabPanel.add(tbtmStorage);
 		    
 		    TabItem tbtmStatistics = new TabItem("Statistics");
-		    Statistics iaasStatisticsTab = new Statistics();
+		    StatisticsPanel iaasStatisticsTab = new StatisticsPanel();
 		    tbtmStatistics.add(iaasStatisticsTab);
 		    gxtTabPanel.add(tbtmStatistics);
 		    
