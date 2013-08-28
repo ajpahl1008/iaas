@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.event.WindowEvent;
 import com.extjs.gxt.ui.client.event.WindowListener;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.Window;
@@ -92,7 +95,7 @@ public class DeleteParentPopUp extends Window  {
 	  add(btnCancel, new AbsoluteData(324, 248));
 	  btnCancel.setSize("45px", "22px");
 	  
-	   Button btnReserve = new Button("Delete", new SelectionListener<ButtonEvent>() {  
+	   Button btnDelete = new Button("Delete", new SelectionListener<ButtonEvent>() {  
 		      @Override  
 		      public void componentSelected(ButtonEvent ce) {
 		    	if (parentList.getToList().getListView().getItemCount() == 0 ) {
@@ -115,9 +118,9 @@ public class DeleteParentPopUp extends Window  {
 		    	}
 		      }  
 		    });
-	   add(btnReserve, new AbsoluteData(375, 248));
-	   btnReserve.setSize("53px", "22px");
-	    addWindowListener(new WindowListener() {  
+	   add(btnDelete, new AbsoluteData(375, 248));
+	   btnDelete.setSize("53px", "22px");
+	   addWindowListener(new WindowListener() {  
 	        @Override  
 	        public void windowHide(WindowEvent we) {
 	        	
@@ -156,36 +159,84 @@ public class DeleteParentPopUp extends Window  {
 	    			com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
 	    		}
 	    		
-	    		public void onSuccess(List<String> result) {
+	    		public void onSuccess(final List<String> result) {
 	    			Info.display("Reservation Service Response","Found " + result.size() + " number of children for parent " + parent);
-	    		    ArrayList<String> children = new ArrayList<String>();	
-	    		    children.addAll(result);
-	    			reservationService.deleteServers(children, new AsyncCallback<Integer>() {
-	    				
-	    				public void onFailure(Throwable caught) {
-	    					com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
-	    				}
-	    				
-	    				public void onSuccess(Integer result) {
-	    					Info.display("Reservation Service Response","Deleted " + result.toString() + " number of children.");
-                    	    final ArrayList<String> targetParent = new ArrayList<String>();
-                            targetParent.add(parent);
-	    					reservationService.deleteParents(targetParent, new AsyncCallback<Integer>() {
+	    			if (result.size() >= 1){
+	    				MessageBox.confirm("Parent has Children. Clicking Yes will delete children.", "Are you sure?", new Listener<MessageBoxEvent>() {
+	    					
+	    					@Override
+	    					public void handleEvent(MessageBoxEvent be) {
 	    						
-	    						public void onFailure(Throwable caught) {
-	    							com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+	    						Button btn =be.getButtonClicked();                       
+	    						if(Dialog.YES.equalsIgnoreCase(btn.getItemId()))
+	    						{
+	    							ArrayList<String> children = new ArrayList<String>();	
+	    							children.addAll(result);
+	    							reservationService.deleteServers(children, new AsyncCallback<Integer>() {
+	    								
+	    								public void onFailure(Throwable caught) {
+	    									com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+	    								}
+	    								
+	    								public void onSuccess(Integer result) {
+	    									Info.display("Reservation Service Response","Deleted " + result.toString() + " number of children.");
+	    									final ArrayList<String> targetParent = new ArrayList<String>();
+	    									targetParent.add(parent);
+	    									reservationService.deleteParents(targetParent, new AsyncCallback<Integer>() {
+	    										
+	    										public void onFailure(Throwable caught) {
+	    											com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+	    										}
+	    										
+	    										public void onSuccess(Integer result) {
+	    											Info.display("Reservation Service Response","Deleted " + result.toString() + " number of parents.");
+	    											eventBus.fireEvent(new DataChangeEvent());
+	    											targetParent.clear();
+	    										}
+	    										
+	    									});
+	    								}
+	    								
+	    							});
+	    					     
+	    						} else {
+	    							Info.display("Action Canceled", "Parent and Children will NOT be deleted.");
 	    						}
-	    						
-	    						public void onSuccess(Integer result) {
-	    							Info.display("Reservation Service Response","Deleted " + result.toString() + " number of parents.");
-	    							eventBus.fireEvent(new DataChangeEvent());
-	    							targetParent.clear();
-	    						}
-	    						
-	    					});
-	    				}
+	    					}
+	    				});
 	    				
-	    			});
+	    			} else {
+	    				ArrayList<String> children = new ArrayList<String>();	
+						children.addAll(result);
+						reservationService.deleteServers(children, new AsyncCallback<Integer>() {
+							
+							public void onFailure(Throwable caught) {
+								com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+							}
+							
+							public void onSuccess(Integer result) {
+								Info.display("Reservation Service Response","Deleted " + result.toString() + " number of children.");
+								final ArrayList<String> targetParent = new ArrayList<String>();
+								targetParent.add(parent);
+								reservationService.deleteParents(targetParent, new AsyncCallback<Integer>() {
+									
+									public void onFailure(Throwable caught) {
+										com.google.gwt.user.client.Window.alert("Something Bad Happened Deleting Parent(s)");
+									}
+									
+									public void onSuccess(Integer result) {
+										Info.display("Reservation Service Response","Deleted " + result.toString() + " number of parents.");
+										eventBus.fireEvent(new DataChangeEvent());
+										targetParent.clear();
+									}
+									
+								});
+							}
+							
+						});
+				     
+	    			}
+	    			
 	    			
 	    		}
 	    		
