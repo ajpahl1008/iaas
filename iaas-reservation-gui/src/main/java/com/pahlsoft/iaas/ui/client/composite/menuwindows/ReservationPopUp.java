@@ -195,7 +195,7 @@ public class ReservationPopUp extends Window  {
 
 			public void onSuccess(Integer result) {
 				eventBus.fireEvent(new DataChangeEvent());
-				Info.display("Reservation Service Response","Reserved " + result.toString() + " number of servers.");
+				Info.display("Reservation Service Response","Reserved " + result.toString() + " number of servers for 90 Days.");
 			}
 			
 		});
