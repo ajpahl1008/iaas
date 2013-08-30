@@ -195,7 +195,7 @@ public class AddServerPopUp extends Window  {
 			    		    	newServer.setName(txtServerName.getValue());
 			    		    	newServer.setStatus(scbStatus.getValue().getValue().toString());
 			    		    	newServer.setParentName(scbParent.getValue().getParentName());
-			    		    	newServer.setIpAddress(txtCpuQuantity.getValue());
+			    		    	newServer.setIpAddress(txtServerIp.getValue());
 			    		    	newServer.setDnsName(txtServerDns.getValue());
 			    		    	newServer.setOperatingSystem(scbOperatingSystem.getValue().getValue().toString());
 			    		        newServer.setCpuQuantity(txtCpuQuantity.getValue());
